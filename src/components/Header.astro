@@ -1,0 +1,383 @@
+---
+interface Props {
+  activePage?: string;
+}
+
+const { activePage = 'Home' } = Astro.props;
+---
+
+<header class="site-header">
+  <!-- Top Utility Bar (32px) -->
+  <aside class="utility-bar" aria-label="Event information and motto">
+    <div class="header-container d-flex justify-content-between align-items-center">
+      <span class="utility-location">Tampa Bay, Florida</span>
+      <span class="utility-tagline">Celebrate &bull; Connect &bull; Belong</span>
+    </div>
+  </aside>
+
+  <!-- Main Navigation Bar (96px desktop) -->
+  <nav class="navbar navbar-expand-lg main-navbar" aria-label="Main site navigation">
+    <div class="header-container d-flex justify-content-between align-items-center">
+      <!-- Coastal Adinkra Logo (approx 230px wide desktop) -->
+      <a class="navbar-brand brand-lockup p-0 m-0" href="/" aria-label="Ghana Day In Tampa Bay Home">
+        <img
+          src="/images/logo.png"
+          alt=""
+          class="site-logo"
+        />
+        <span class="brand-lockup-name">Ghana Day In Tampa Bay</span>
+      </a>
+
+      <!-- Mobile Hamburger Button (below 992px) -->
+      <button
+        class="site-navbar-toggler d-lg-none"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#siteOffcanvasNavbar"
+        aria-controls="siteOffcanvasNavbar"
+        aria-expanded="false"
+        aria-label="Toggle navigation menu"
+      >
+        <i class="bi bi-list hamburger-icon" aria-hidden="true"></i>
+      </button>
+
+      <!-- Desktop Navigation Menu (992px and above) -->
+      <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end align-items-center" id="desktopNavbarContent">
+        <ul class="navbar-nav mb-0">
+          <li class="nav-item">
+            <a
+              class={`nav-link ${activePage === 'Home' ? 'active' : ''}`}
+              href="/"
+              aria-current={activePage === 'Home' ? 'page' : undefined}
+            >
+              Home
+            </a>
+          </li>
+
+          <!-- About Dropdown -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#about"
+              id="aboutDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              About
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+              <li>
+                <a class="dropdown-item" href="#about">
+                  <i class="bi bi-people" aria-hidden="true"></i>
+                  <span>About Us</span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#history">
+                  <i class="bi bi-clock-history" aria-hidden="true"></i>
+                  <span>History</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Experience Dropdown -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="experienceDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Experience
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="experienceDropdown">
+              <li>
+                <a class="dropdown-item" href="#festival-program">
+                  <i class="bi bi-calendar-event" aria-hidden="true"></i>
+                  <span>The Event</span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#music">
+                  <i class="bi bi-music-note-beamed" aria-hidden="true"></i>
+                  <span>Music</span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#food">
+                  <i class="bi bi-cup-hot" aria-hidden="true"></i>
+                  <span>Food</span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#marketplace">
+                  <i class="bi bi-shop" aria-hidden="true"></i>
+                  <span>Marketplace</span>
+                </a>
+              </li>
+                <li>
+                  <a class="dropdown-item" href="#getting-there">
+                    <i class="bi bi-signpost-2" aria-hidden="true"></i>
+                    <span>Getting There</span>
+                  </a>
+                </li>
+            </ul>
+          </li>
+
+          <!-- Get Involved Dropdown -->
+          <li class="nav-item dropdown">
+            <div class="d-flex align-items-center">
+              <a class="nav-link" href="#get-involved">Get Involved</a>
+              <button
+                class="nav-link dropdown-toggle border-0 bg-transparent"
+                type="button"
+                id="getInvolvedDropdown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                aria-label="Open Get Involved menu"
+              ></button>
+            </div>
+            <ul class="dropdown-menu" aria-labelledby="getInvolvedDropdown">
+              <li>
+                <a class="dropdown-item" href="#sponsorship">
+                  <i class="bi bi-heart" aria-hidden="true"></i>
+                  <span>Sponsorship</span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#vendor-registration">
+                  <i class="bi bi-shop-window" aria-hidden="true"></i>
+                  <span>Vendor Registration</span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#volunteer">
+                  <i class="bi bi-person-raised-hand" aria-hidden="true"></i>
+                  <span>Volunteer</span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#business-forum">
+                  <i class="bi bi-briefcase" aria-hidden="true"></i>
+                  <span>Business Forum</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a
+              class={`nav-link ${activePage === 'Media' ? 'active' : ''}`}
+              href="#media"
+              aria-current={activePage === 'Media' ? 'page' : undefined}
+            >
+              Media
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a
+              class={`nav-link ${activePage === 'Contact' ? 'active' : ''}`}
+              href="#contact"
+              aria-current={activePage === 'Contact' ? 'page' : undefined}
+            >
+              Contact
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="btn ticket-button" href="#vendor-registration">
+              BECOME A VENDOR
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Mobile Offcanvas Menu (From Right) -->
+      <div
+        class="offcanvas offcanvas-end site-offcanvas d-lg-none"
+        tabindex="-1"
+        id="siteOffcanvasNavbar"
+        aria-labelledby="siteOffcanvasNavbarLabel"
+      >
+        <div class="offcanvas-header site-offcanvas-header d-flex justify-content-between align-items-center">
+          <h5 class="offcanvas-title site-offcanvas-title" id="siteOffcanvasNavbarLabel">Ghana Day In Tampa Bay</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close navigation menu"
+          ></button>
+        </div>
+
+        <div class="offcanvas-body site-offcanvas-body d-flex flex-column justify-content-between">
+          <div class="offcanvas-nav-content">
+            <a
+              class={`offcanvas-nav-link ${activePage === 'Home' ? 'active' : ''}`}
+              href="/"
+              aria-current={activePage === 'Home' ? 'page' : undefined}
+            >
+              Home
+            </a>
+
+            <!-- Mobile Accordion for Sub-menus -->
+            <div class="accordion accordion-flush mobile-accordion" id="mobileNavAccordion">
+              <!-- About Accordion -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingMobileAbout">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseMobileAbout"
+                    aria-expanded="false"
+                    aria-controls="collapseMobileAbout"
+                  >
+                    About
+                  </button>
+                </h2>
+                <div
+                  id="collapseMobileAbout"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingMobileAbout"
+                  data-bs-parent="#mobileNavAccordion"
+                >
+                  <div class="accordion-body">
+                    <a class="mobile-sub-link" href="#about">
+                      <i class="bi bi-people" aria-hidden="true"></i>
+                      <span>About Us</span>
+                    </a>
+                    <a class="mobile-sub-link" href="#history">
+                      <i class="bi bi-clock-history" aria-hidden="true"></i>
+                      <span>History</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Experience Accordion -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingMobileExperience">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseMobileExperience"
+                    aria-expanded="false"
+                    aria-controls="collapseMobileExperience"
+                  >
+                    Experience
+                  </button>
+                </h2>
+                <div
+                  id="collapseMobileExperience"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingMobileExperience"
+                  data-bs-parent="#mobileNavAccordion"
+                >
+                  <div class="accordion-body">
+                    <a class="mobile-sub-link" href="#festival-program">
+                      <i class="bi bi-stars" aria-hidden="true"></i>
+                      <span>Experience the Day</span>
+                    </a>
+                    <a class="mobile-sub-link" href="#festival-program">
+                      <i class="bi bi-calendar-event" aria-hidden="true"></i>
+                      <span>The Event</span>
+                    </a>
+                    <a class="mobile-sub-link" href="#getting-there">
+                      <i class="bi bi-signpost-2" aria-hidden="true"></i>
+                      <span>Getting There</span>
+                    </a>
+                    <a class="mobile-sub-link" href="#music">
+                      <i class="bi bi-music-note-beamed" aria-hidden="true"></i>
+                      <span>Music</span>
+                    </a>
+                    <a class="mobile-sub-link" href="#food">
+                      <i class="bi bi-cup-hot" aria-hidden="true"></i>
+                      <span>Food</span>
+                    </a>
+                    <a class="mobile-sub-link" href="#marketplace">
+                      <i class="bi bi-shop" aria-hidden="true"></i>
+                      <span>Marketplace</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Get Involved Accordion -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingMobileGetInvolved">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseMobileGetInvolved"
+                    aria-expanded="false"
+                    aria-controls="collapseMobileGetInvolved"
+                  >
+                    Get Involved
+                  </button>
+                </h2>
+                <div
+                  id="collapseMobileGetInvolved"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingMobileGetInvolved"
+                  data-bs-parent="#mobileNavAccordion"
+                >
+                  <div class="accordion-body">
+                    <a class="mobile-sub-link" href="#get-involved">
+                      <i class="bi bi-grid" aria-hidden="true"></i>
+                      <span>Get Involved Overview</span>
+                    </a>
+                    <a class="mobile-sub-link" href="#sponsorship">
+                      <i class="bi bi-heart" aria-hidden="true"></i>
+                      <span>Sponsorship</span>
+                    </a>
+                    <a class="mobile-sub-link" href="#vendor-registration">
+                      <i class="bi bi-shop-window" aria-hidden="true"></i>
+                      <span>Vendor Registration</span>
+                    </a>
+                    <a class="mobile-sub-link" href="#volunteer">
+                      <i class="bi bi-person-raised-hand" aria-hidden="true"></i>
+                      <span>Volunteer</span>
+                    </a>
+                    <a class="mobile-sub-link" href="#business-forum">
+                      <i class="bi bi-briefcase" aria-hidden="true"></i>
+                      <span>Business Forum</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <a
+              class={`offcanvas-nav-link ${activePage === 'Media' ? 'active' : ''}`}
+              href="#media"
+              aria-current={activePage === 'Media' ? 'page' : undefined}
+            >
+              Media
+            </a>
+
+            <a
+              class={`offcanvas-nav-link ${activePage === 'Contact' ? 'active' : ''}`}
+              href="#contact"
+              aria-current={activePage === 'Contact' ? 'page' : undefined}
+            >
+              Contact
+            </a>
+          </div>
+
+          <div class="offcanvas-cta-wrapper">
+            <a class="btn ticket-button w-100" href="#vendor-registration">
+              BECOME A VENDOR
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

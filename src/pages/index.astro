@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import History from '../components/History.astro';
+import Event from '../components/experience/Event.astro';
+import Music from '../components/experience/Music.astro';
+import Food from '../components/experience/Food.astro';
+import Marketplace from '../components/experience/Marketplace.astro';
+import GettingThere from '../components/GettingThere.astro';
+import Media from '../components/Media.astro';
+import Gallery from '../components/Gallery.astro';
+import SupportingSections from '../components/SupportingSections.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Ghana Day In Tampa Bay | Celebrate • Connect • Belong"
+  description="Celebrating Ghana in Tampa Bay. A vibrant celebration of Ghanaian culture, community, music, food and heritage."
+>
+  <Header activePage="Home" />
+
+  <main id="main-content">
+    <Hero />
+    <About />
+    <History />
+    <Event />
+    <Music />
+    <Food />
+    <Marketplace />
+    <GettingThere />
+    <Media />
+    <Gallery />
+    <SupportingSections />
+  </main>
+
+  <Footer />
+</BaseLayout>
+

@@ -1,0 +1,80 @@
+---
+interface TimelineEvent {
+  year: string;
+  side: 'left' | 'right';
+  description: string;
+}
+
+const events: TimelineEvent[] = [
+  {
+    year: '1471',
+    side: 'right',
+    description:
+      'Portuguese explorers arrive on the Gold Coast, marking the beginning of sustained European contact and coastal trade.',
+  },
+  {
+    year: '1874',
+    side: 'left',
+    description:
+      'The British formally establish the Gold Coast Colony, while resistance and movements for self-determination continue to grow.',
+  },
+  {
+    year: '1957',
+    side: 'right',
+    description:
+      'Ghana becomes the first sub-Saharan African country to gain independence from colonial rule, led by Dr. Kwame Nkrumah.',
+  },
+  {
+    year: '1960',
+    side: 'left',
+    description:
+      'Ghana becomes a republic, and Dr. Kwame Nkrumah serves as the country’s first President.',
+  },
+  {
+    year: '1992–1993',
+    side: 'right',
+    description:
+      'A new constitution begins Ghana’s Fourth Republic and restores constitutional multi-party government.',
+  },
+  {
+    year: '2026',
+    side: 'left',
+    description:
+      'Ghana Day In Tampa Bay launches its maiden celebration, welcoming the Ghanaian and African diaspora from across Florida and neighboring communities.',
+  },
+];
+---
+
+<section id="history" class="history-section" aria-labelledby="history-heading">
+  <div class="header-container">
+    <!-- Section Introduction -->
+    <div class="history-header text-center">
+      <p class="section-eyebrow eyebrow-light reveal reveal-up">OUR STORY</p>
+      <h2 id="history-heading" class="section-heading heading-light reveal reveal-up">
+        The Journey of Ghana
+      </h2>
+      <p class="history-intro reveal reveal-up">
+        From early European contact to independence and modern democracy, Ghana’s story is one of resilience, leadership and cultural pride.
+      </p>
+    </div>
+
+    <!-- Timeline Container -->
+    <div class="timeline-wrapper reveal reveal-up">
+      <div class="timeline-track" aria-hidden="true"></div>
+
+      <div class="timeline-list">
+        {
+          events.map((item) => (
+            <div class={`timeline-item timeline-${item.side}`}>
+              <div class="timeline-marker" aria-hidden="true" />
+              <div class="timeline-content">
+                <span class="timeline-year">{item.year}</span>
+                <p class="timeline-text">{item.description}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

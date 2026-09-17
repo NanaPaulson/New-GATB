@@ -1,0 +1,125 @@
+---
+const programItems = [
+  {
+    number: '01',
+    time: 'TBA',
+    title: 'Opening Ceremony',
+    description:
+      'A welcoming celebration with community leaders, cultural introductions and the opening procession.',
+  },
+  {
+    number: '02',
+    time: 'TBA',
+    title: 'Traditional Drumming & Dance',
+    description:
+      'Powerful rhythms and movement performed by Ghanaian cultural groups.',
+  },
+  {
+    number: '03',
+    time: 'TBA',
+    title: 'Live Artist Performances',
+    description:
+      'Enjoy live performances from Ghanaian and African artists celebrating music, culture and community.',
+  },
+  {
+    number: '04',
+    time: 'TBA',
+    title: 'Fashion Showcase',
+    description: 'Kente, smocks, kaba and slit, and contemporary Ghanaian designs.',
+  },
+  {
+    number: '05',
+    time: 'TBA',
+    title: 'Ghanaian Food Experience',
+    description: 'Authentic dishes and flavors presented by local cooks and food vendors.',
+  },
+  {
+    number: '06',
+    time: 'TBA',
+    title: 'Family & Kids Activities',
+    description: 'Interactive cultural activities, games and learning experiences for all ages.',
+  },
+  {
+    number: '07',
+    time: 'TBA',
+    title: 'Closing Celebration',
+    description: 'Music, acknowledgements and a joyful community finale.',
+  },
+];
+---
+
+<section id="event" class="experience-section event-section" aria-labelledby="event-heading">
+  <div class="header-container">
+    <div class="row g-4 g-lg-5 align-items-center">
+      <div class="col-12 col-lg-5 order-1">
+        <div class="event-content">
+          <p class="section-eyebrow reveal reveal-up">THE EVENT</p>
+          <h2 id="event-heading" class="section-heading reveal reveal-up">
+            A Day of Culture, Connection &amp; Celebration
+          </h2>
+          <p class="event-description reveal reveal-up">
+            Ghana Day In Tampa Bay brings Ghanaian music, food, fashion, history and community together for a vibrant festival that educates, inspires and creates lasting connections in the heart of Tampa Bay.
+          </p>
+          <div class="event-actions reveal reveal-up">
+            <a href="#getting-there" class="btn ticket-button">GETTING THERE</a>
+            <a href="#festival-program" class="btn event-secondary-button">VIEW PROGRAM</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-7 order-2">
+        <div class="event-image-wrapper">
+          <img
+            src="/images/gallery/welcome-carousel-ghanaian-drummers-2560x1440.webp"
+            alt="Ghanaian traditional drummers and cultural performers celebrating at Ghana Day festival"
+            width="1280"
+            height="720"
+            class="event-image"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="festival-program" class="festival-program-section" aria-labelledby="festival-program-heading">
+  <div class="header-container">
+    <header class="festival-program-header text-center">
+      <p class="section-eyebrow reveal reveal-up">FESTIVAL PROGRAM</p>
+      <h2 id="festival-program-heading" class="section-heading reveal reveal-up">Experience the Day</h2>
+      <p class="festival-program-intro reveal reveal-up">
+        A thoughtfully planned celebration of Ghanaian culture from opening to closing.
+      </p>
+    </header>
+
+    <ol class="program-list stagger-group">
+      {
+        programItems.map((item) => (
+          <li class="program-item">
+            <span class="program-item__number" aria-hidden="true">{item.number}</span>
+            <div class="program-item__content">
+              <h3 class="program-item__title">{item.title}</h3>
+              <p class="program-item__description">{item.description}</p>
+              <span class="program-item__time">TIME {item.time}</span>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<section class="event-final-cta" aria-labelledby="event-final-cta-heading">
+  <div class="header-container text-center">
+    <h2 id="event-final-cta-heading" class="event-final-cta__heading">Ready to Celebrate With Us?</h2>
+    <p class="event-final-cta__description">
+      Be part of a vibrant day of culture, community and lasting connections.
+    </p>
+    <div class="event-actions event-final-cta__actions">
+      <a href="#getting-there" class="btn ticket-button">GETTING THERE</a>
+      <a href="#volunteer" class="btn event-secondary-button">BECOME A VOLUNTEER</a>
+    </div>
+  </div>
+</section>

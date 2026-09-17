@@ -1,0 +1,92 @@
+---
+const foodItems = [
+  {
+    title: 'Red Red & Fried Plantain',
+    caption: 'A rich Ghanaian favorite',
+    image: '/images/Food1.jpeg',
+    alt: 'Ghanaian red red stew served with fried plantain, eggs and avocado',
+  },
+  {
+    title: 'Yam & Kontomire Stew',
+    caption: 'A nourishing traditional classic',
+    image: '/images/Food2.jpeg',
+    alt: 'Boiled yam served with kontomire stew, egg and fish',
+  },
+  {
+    title: 'Waakye Special',
+    caption: 'The complete street-food experience',
+    image: '/images/Food3.jpeg',
+    alt: 'Ghanaian waakye served with plantain, meat, egg, noodles and salad',
+  },
+  {
+    title: 'Ampesi & Garden Egg Stew',
+    caption: 'Comfort rooted in tradition',
+    image: '/images/Food4.jpeg',
+    alt: 'Ghanaian ampesi served with garden egg stew, eggs and fish',
+  },
+];
+---
+
+<section id="food" class="food-experience" aria-labelledby="food-experience-title">
+  <div class="food-experience__background" aria-hidden="true">
+    <span class="food-experience__word food-experience__word--taste">TASTE</span>
+    <span class="food-experience__word food-experience__word--ghana">GHANA</span>
+    <span class="food-experience__rings"></span>
+    <span class="food-experience__dot food-experience__dot--one"></span>
+    <span class="food-experience__dot food-experience__dot--two"></span>
+    <span class="food-experience__dot food-experience__dot--three"></span>
+  </div>
+
+  <div class="food-experience__container">
+    <header class="food-experience__header text-center">
+      <p class="food-experience__eyebrow">AUTHENTIC GHANAIAN CUISINE</p>
+      <h2 id="food-experience-title" class="food-experience__title">Taste of Ghana</h2>
+      <p class="food-experience__intro">
+        Experience the bold flavors, cherished recipes and shared traditions of Ghanaian cooking.
+      </p>
+    </header>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
+      {
+        foodItems.map((item) => (
+          <div class="col d-flex">
+            <article class="food-experience__card d-flex flex-column w-100 h-100">
+              <div class="food-experience__media">
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  width="1200"
+                  height="1600"
+                  class="food-experience__image"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="food-experience__content">
+                <span class="food-experience__accent"></span>
+                <h3 class="food-experience__card-title">{item.title}</h3>
+                <p class="food-experience__subtitle">{item.caption}</p>
+              </div>
+            </article>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="food-experience__closing text-center">
+      <p>Come hungry and discover the flavors that bring families and communities together.</p>
+      <a href="#festival-program" class="btn ticket-button">EXPLORE THE FOOD EXPERIENCE</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .food-experience { --food-background: #fafbf8; --food-green: #0b4f2e; --food-green-secondary: #217346; --food-sage: #e7f0e8; --food-text: #26332c; --food-gold: #c89b32; --food-white: #ffffff; background: radial-gradient(circle at 8% 26%, rgba(33, 115, 70, .07), transparent 27%), radial-gradient(circle at 92% 78%, rgba(11, 79, 46, .05), transparent 30%), var(--food-background); isolation: isolate; overflow: hidden; padding: clamp(5rem, 7vw, 7.5rem) 0; position: relative; }
+  .food-experience__background { inset: 0; pointer-events: none; position: absolute; z-index: 0; }.food-experience__container { margin-inline: auto; position: relative; width: min(calc(100% - 3rem), 1400px); z-index: 2; }.food-experience__header { margin: 0 auto 3.5rem; max-width: 780px; }.food-experience__eyebrow { color: var(--food-gold); font-size: .76rem; font-weight: 800; letter-spacing: .16em; margin: 0 0 1rem; }.food-experience__title { color: var(--food-green); font-family: Georgia, Cambria, 'Times New Roman', serif; font-size: clamp(2.6rem, 5vw, 4.8rem); line-height: 1; margin: 0; }.food-experience__intro { color: var(--food-text); font-size: 1.05rem; line-height: 1.65; margin: 1.15rem auto 0; max-width: 650px; }
+  .food-experience__word { color: transparent; font-family: inherit; font-size: clamp(7rem, 13vw, 15rem); font-weight: 700; line-height: 1; position: absolute; text-transform: uppercase; user-select: none; white-space: nowrap; -webkit-text-stroke: 1px rgba(11, 79, 46, .08); }.food-experience__word--taste { animation: food-word-float 14s ease-in-out infinite; left: -1%; top: 1%; }.food-experience__word--ghana { animation: food-word-float 17s ease-in-out infinite reverse; bottom: -2%; right: -1%; }.food-experience__rings { animation: food-rings-rotate 36s linear infinite; border: 1px solid rgba(11, 79, 46, .14); border-radius: 50%; height: clamp(260px, 28vw, 460px); position: absolute; right: clamp(-220px, -12vw, -120px); top: 10%; width: clamp(260px, 28vw, 460px); }.food-experience__rings::before, .food-experience__rings::after { border: 1px solid rgba(33, 115, 70, .14); border-radius: 50%; content: ''; inset: 14%; position: absolute; }.food-experience__rings::after { border-color: rgba(200, 155, 50, .2); inset: 30%; }.food-experience__dot { background: var(--food-green-secondary); border-radius: 50%; opacity: .18; position: absolute; }.food-experience__dot--one { height: .45rem; left: 12%; top: 34%; width: .45rem; }.food-experience__dot--two { height: .7rem; right: 20%; top: 42%; width: .7rem; }.food-experience__dot--three { background: var(--food-gold); bottom: 20%; height: .55rem; left: 18%; width: .55rem; }
+  .food-experience__card { background: rgba(255, 255, 255, .96); border: 1px solid rgba(11, 79, 46, .15); border-radius: .75rem; box-shadow: 0 12px 28px rgba(22, 55, 38, .07); overflow: hidden; transition: transform 250ms ease, box-shadow 250ms ease; }.food-experience__media { aspect-ratio: 3 / 4; background: var(--food-sage); border-radius: .65rem .65rem 0 0; overflow: hidden; position: relative; width: 100%; }.food-experience__image { display: block; height: 100%; object-fit: cover; object-position: center; transition: transform 450ms ease; width: 100%; }.food-experience__content { align-items: center; display: flex; flex: 1; flex-direction: column; padding: 1.35rem 1rem 1.5rem; text-align: center; }.food-experience__accent { background: var(--food-gold); height: 2px; margin-bottom: .85rem; width: 3rem; }.food-experience__card-title { color: var(--food-green); font-family: Georgia, Cambria, 'Times New Roman', serif; font-size: clamp(1.35rem, 1.8vw, 1.8rem); line-height: 1.08; margin: 0; }.food-experience__subtitle { color: var(--food-text); font-size: .75rem; font-weight: 600; letter-spacing: .14em; line-height: 1.5; margin: .65rem 0 0; text-transform: uppercase; }.food-experience__closing { padding-top: 3rem; }.food-experience__closing p { color: var(--food-text); font-size: 1.05rem; line-height: 1.6; margin: 0 auto 1.5rem; }
+  @media (hover: hover) { .food-experience__card:hover { box-shadow: 0 18px 38px rgba(22, 55, 38, .11); transform: translateY(-5px); }.food-experience__card:hover .food-experience__image { transform: scale(1.025); } }
+  @keyframes food-rings-rotate { to { transform: rotate(360deg); } } @keyframes food-word-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+  @media (max-width: 767.98px) { .food-experience__container { width: calc(100% - 2rem); }.food-experience__word--taste { font-size: 7rem; left: -8%; }.food-experience__word--ghana { display: none; }.food-experience__header { margin-bottom: 2.75rem; } }
+  @media (prefers-reduced-motion: reduce) { .food-experience__rings, .food-experience__word, .food-experience__card, .food-experience__image { animation: none !important; transition: none !important; } }
+</style>

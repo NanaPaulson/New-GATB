@@ -1,0 +1,337 @@
+---
+const address = 'Rowlett Park, 2401 E Yukon Street, Tampa, FL 33604';
+const googleMapsUrl = 'https://www.google.com/maps/dir/?api=1&destination=Rowlett%20Park%2C%202401%20E%20Yukon%20St%2C%20Tampa%2C%20FL%2033604';
+const appleMapsUrl = 'https://maps.apple.com/?daddr=Rowlett%20Park%2C%202401%20E%20Yukon%20St%2C%20Tampa%2C%20FL%2033604&dirflg=d';
+const mapEmbedUrl = 'https://www.google.com/maps?q=Rowlett%20Park%2C%202401%20E%20Yukon%20Street%2C%20Tampa%2C%20FL%2033604&output=embed';
+---
+
+<section id="getting-there" class="getting-there-section" aria-labelledby="getting-there-heading">
+  <div class="header-container">
+    <div class="row g-4 g-lg-5 align-items-stretch">
+      <div class="col-12 col-lg-5">
+        <div class="getting-there__content">
+          <p class="section-eyebrow reveal reveal-up">PLAN YOUR VISIT</p>
+          <h2 id="getting-there-heading" class="section-heading reveal reveal-up">Getting There</h2>
+          <p class="getting-there__intro reveal reveal-up">
+            Join us at Rowlett Park for a day of Ghanaian culture, community, music, food and celebration.
+          </p>
+
+          <article class="getting-there__card reveal reveal-up" aria-label="Ghana Day In Tampa Bay venue details">
+            <div class="getting-there__detail getting-there__detail--venue">
+              <i class="bi bi-geo-alt getting-there__icon" aria-hidden="true"></i>
+              <div>
+                <h3 class="getting-there__venue">Rowlett Park</h3>
+                <address>{address}</address>
+              </div>
+            </div>
+            <div class="getting-there__detail">
+              <i class="bi bi-calendar-event getting-there__icon" aria-hidden="true"></i>
+              <div>
+                <span class="getting-there__label">DATE</span>
+                <span class="getting-there__value">Saturday, November 7, 2026</span>
+              </div>
+            </div>
+            <div class="getting-there__detail">
+              <i class="bi bi-clock getting-there__icon" aria-hidden="true"></i>
+              <div>
+                <span class="getting-there__label">TIME</span>
+                <span class="getting-there__value">10:00 AM EST</span>
+              </div>
+            </div>
+            <p class="getting-there__parking">
+              <i class="bi bi-info-circle" aria-hidden="true"></i>
+              <span>Parking and additional arrival information will be announced before the event.</span>
+            </p>
+          </article>
+
+          <div class="getting-there__actions reveal reveal-up" aria-label="Map directions">
+            <a class="btn getting-there__button getting-there__button--primary" href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
+              <i class="bi bi-map" aria-hidden="true"></i>
+              <span>OPEN IN GOOGLE MAPS</span>
+            </a>
+            <a class="btn getting-there__button getting-there__button--secondary" href={appleMapsUrl} target="_blank" rel="noopener noreferrer">
+              <i class="bi bi-sign-turn-right" aria-hidden="true"></i>
+              <span>OPEN IN APPLE MAPS</span>
+            </a>
+            <button type="button" class="getting-there__copy" data-copy-address aria-describedby="copy-address-status">
+              <i class="bi bi-clipboard" aria-hidden="true"></i>
+              <span data-copy-label>COPY ADDRESS</span>
+            </button>
+            <span id="copy-address-status" class="visually-hidden" aria-live="polite"></span>
+            <div class="getting-there__fallback" data-copy-fallback hidden>
+              <label for="getting-there-address">Select the address to copy</label>
+              <input id="getting-there-address" type="text" value={address} readonly />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-7">
+        <div class="getting-there__map reveal reveal-right">
+          <iframe
+            src={mapEmbedUrl}
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Map showing Rowlett Park in Tampa, Florida"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const copyButton = document.querySelector<HTMLButtonElement>('[data-copy-address]');
+  const copyLabel = copyButton?.querySelector<HTMLElement>('[data-copy-label]');
+  const copyStatus = document.querySelector<HTMLElement>('#copy-address-status');
+  const copyFallback = document.querySelector<HTMLElement>('[data-copy-fallback]');
+  const address = 'Rowlett Park, 2401 E Yukon Street, Tampa, FL 33604';
+
+  copyButton?.addEventListener('click', async () => {
+    if (!navigator.clipboard?.writeText) {
+      if (copyFallback) copyFallback.hidden = false;
+      if (copyStatus) copyStatus.textContent = 'Clipboard access is unavailable. Select the address field to copy it.';
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(address);
+      if (copyLabel) copyLabel.textContent = 'ADDRESS COPIED';
+      if (copyStatus) copyStatus.textContent = 'Address copied.';
+      window.setTimeout(() => {
+        if (copyLabel) copyLabel.textContent = 'COPY ADDRESS';
+      }, 2000);
+    } catch {
+      if (copyFallback) copyFallback.hidden = false;
+      if (copyStatus) copyStatus.textContent = 'Clipboard access failed. Select the address field to copy it.';
+    }
+  });
+</script>
+
+<style>
+  .getting-there-section {
+    --burgundy: #006b3f;
+    --white: #ffffff;
+    --warm-ivory: #f7f3ee;
+    --charcoal: #252525;
+    --border: #e7e0d8;
+    --gold: #c59a3d;
+    padding: clamp(4.5rem, 7vw, 7rem) 0;
+    background: var(--warm-ivory);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .getting-there__content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .getting-there__intro {
+    max-width: 580px;
+    margin: 0 0 1.75rem;
+    color: var(--charcoal);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+
+  .getting-there__card {
+    margin-bottom: 1.5rem;
+    padding: clamp(1.25rem, 2vw, 1.75rem);
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 8px 22px rgba(37, 37, 37, 0.06);
+  }
+
+  .getting-there__detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding-top: 1rem;
+    margin-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .getting-there__detail--venue {
+    padding-top: 0;
+    margin-top: 0;
+    border-top: 0;
+  }
+
+  .getting-there__icon {
+    flex: 0 0 1.25rem;
+    margin-top: 0.15rem;
+    color: var(--burgundy);
+    font-size: 1.2rem;
+  }
+
+  .getting-there__venue,
+  .getting-there__value,
+  .getting-there__label {
+    display: block;
+  }
+
+  .getting-there__venue {
+    margin: 0 0 0.35rem;
+    color: var(--charcoal);
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  .getting-there__card address {
+    margin: 0;
+    color: #454545;
+    font-size: 0.98rem;
+    line-height: 1.55;
+    font-style: normal;
+  }
+
+  .getting-there__label {
+    margin-bottom: 0.2rem;
+    color: var(--burgundy);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
+  .getting-there__value {
+    color: var(--charcoal);
+    font-size: 0.98rem;
+    line-height: 1.45;
+  }
+
+  .getting-there__parking {
+    display: flex;
+    gap: 0.55rem;
+    margin: 1.25rem 0 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    color: #555555;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .getting-there__parking i {
+    flex: 0 0 auto;
+    color: var(--gold);
+  }
+
+  .getting-there__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: auto;
+  }
+
+  .getting-there__button {
+    min-height: 48px;
+    padding: 0.8rem 0.85rem;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.035em;
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  .getting-there__button--primary {
+    background: var(--burgundy);
+    border-color: var(--burgundy);
+    color: var(--white);
+  }
+
+  .getting-there__button--primary:hover,
+  .getting-there__button--primary:focus-visible {
+    background: #004d2d;
+    border-color: #004d2d;
+    color: var(--white);
+  }
+
+  .getting-there__button--secondary {
+    background: var(--white);
+    border: 1px solid var(--burgundy);
+    color: var(--burgundy);
+  }
+
+  .getting-there__button--secondary:hover,
+  .getting-there__button--secondary:focus-visible {
+    background: var(--burgundy);
+    color: var(--white);
+  }
+
+  .getting-there__copy {
+    grid-column: 1 / -1;
+    justify-self: start;
+    padding: 0.25rem 0;
+    border: 0;
+    background: transparent;
+    color: var(--burgundy);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  .getting-there__copy:hover,
+  .getting-there__copy:focus-visible {
+    color: #004d2d;
+  }
+
+  .getting-there__fallback {
+    grid-column: 1 / -1;
+  }
+
+  .getting-there__fallback label {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--charcoal);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .getting-there__fallback input {
+    width: 100%;
+    min-height: 42px;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--charcoal);
+    background: var(--white);
+  }
+
+  .getting-there__map {
+    position: relative;
+    width: 100%;
+    min-height: 420px;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--white);
+    box-shadow: 0 8px 22px rgba(37, 37, 37, 0.06);
+  }
+
+  .getting-there__map iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+    border: 0;
+    display: block;
+  }
+
+  @media (max-width: 767.98px) {
+    .getting-there__actions {
+      grid-template-columns: 1fr;
+    }
+
+    .getting-there__button {
+      width: 100%;
+    }
+  }
+</style>

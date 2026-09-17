@@ -1,0 +1,216 @@
+---
+const genres = [
+  { number: '01', title: 'Highlife', description: 'Melodic, soulful and timeless. Ghana’s foundational popular sound connects generations.', audio: '/assets/audio/highlife.mp3', icon: 'bi-music-note-beamed', accent: 'red' },
+  { number: '02', title: 'Hiplife', description: 'Highlife heritage meets Ghanaian hip-hop, storytelling and contemporary energy.', audio: '/assets/audio/hiplife.mp3', icon: 'bi-mic-fill', accent: 'gold' },
+  { number: '03', title: 'Afrobeat', description: 'Bold rhythms, global influence and irresistible movement.', audio: '/assets/audio/afrobeat.mp3', icon: 'bi-vinyl-fill', accent: 'green' },
+  { number: '04', title: 'Palm-Wine Music', description: 'Acoustic coastal storytelling rooted in guitar, voice and community.', audio: '/assets/audio/palm-wine-music.mp3', icon: 'bi-guitar', accent: 'green' },
+  { number: '05', title: 'Traditional Drumming', description: 'Ancestral rhythms connecting music, dance and ceremony.', audio: '/assets/audio/traditional-drumming.mp3', icon: 'bi-disc-fill', accent: 'red' },
+  { number: '06', title: 'Live Band', description: 'Real instruments, live energy and unforgettable performances.', audio: '/assets/audio/live-band.mp3', icon: 'bi-music-note-list', accent: 'gold' },
+];
+---
+
+<section id="music" class="music-experience" aria-labelledby="music-heading">
+  <div class="music-experience__container container">
+    <div class="row align-items-center g-4 g-xl-5 music-hero-row">
+      <div class="col-12 col-lg-6 music-copy-column">
+        <div class="music-experience__copy reveal reveal-up">
+          <p class="music-experience__eyebrow">FEEL THE BEAT OF GHANA</p>
+          <h2 id="music-heading" class="music-hero-title">
+            <span class="music-title-line music-title-where">WHERE</span>
+            <span class="music-title-line music-title-rhythm">RHYTHM</span>
+            <span class="music-title-line music-title-becomes">BECOMES</span>
+            <span class="music-title-line music-title-language">LANGUAGE</span>
+          </h2>
+          <p class="music-intro-text">Experience Ghana’s sound through timeless rhythms, contemporary music and the energy of live performance.</p>
+          <div class="music-soundwave" aria-hidden="true">
+            {Array.from({ length: 24 }).map((_, index) => <span class={`music-experience__bar music-experience__bar--${index % 3}`}></span>)}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-6 music-drum-column">
+        <div class="music-drum-presentation reveal reveal-right">
+          <figure class="music-drum-frame">
+            <img src="/images/drum.jpeg" alt="A pair of traditional Ghanaian wooden drums" width="1600" height="1067" loading="lazy" />
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="music-experience__divider music-genres-heading reveal reveal-up" aria-hidden="true">
+      <span class="music-experience__divider-mark">★</span>
+      <span>THE SOUND OF GHANA</span>
+    </div>
+
+    <div class="music-experience__cards row g-4 stagger-group" data-audio-preview-group>
+      <h3 class="visually-hidden">Ghanaian music genre previews</h3>
+      {genres.map((genre) => (
+        <div class="col-12 col-md-6 col-lg-4" data-audio-card-wrap>
+          <article class={`music-experience__card music-experience__card--${genre.accent}`} data-audio-card data-genre={genre.title}>
+            <div class="music-experience__card-top">
+              <span class="music-experience__number">{genre.number}</span>
+              <div class="music-experience__icon-wrap">
+                <i class={`bi ${genre.icon}`} aria-hidden="true"></i>
+                <button type="button" class="music-experience__play" data-audio-toggle aria-pressed="false" aria-label={`Play 15-second ${genre.title} preview`}>
+                  <i class="bi bi-play-fill" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+            <h3 class="music-experience__card-title">{genre.title}</h3>
+            <p class="music-experience__card-description">{genre.description}</p>
+            <div class="music-experience__card-footer">
+              <span class="music-experience__play-label">PLAY 15 SEC</span>
+              <span class="music-experience__status" role="status" aria-live="polite"></span>
+            </div>
+            <div class="music-experience__progress" role="progressbar" aria-label={`${genre.title} preview progress`} aria-valuemin="0" aria-valuemax="15" aria-valuenow="0"><span data-audio-progress></span></div>
+            <div class="music-experience__active-wave" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+            <audio data-audio preload="metadata" src={genre.audio}></audio>
+          </article>
+        </div>
+      ))}
+    </div>
+
+    <div class="music-experience__cta-wrap reveal reveal-up">
+      <a class="music-experience__cta" href="#event">EXPLORE THE MUSIC EXPERIENCE <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const previewGroup = document.querySelector<HTMLElement>('#music [data-audio-preview-group]');
+  if (previewGroup) {
+    const cards = Array.from(previewGroup.querySelectorAll<HTMLElement>('[data-audio-card]'));
+    let activeCard: HTMLElement | null = null;
+
+    const resetCard = (card: HTMLElement) => {
+      const audio = card.querySelector<HTMLAudioElement>('[data-audio]');
+      const button = card.querySelector<HTMLButtonElement>('[data-audio-toggle]');
+      const icon = button?.querySelector('i');
+      const progress = card.querySelector<HTMLElement>('[data-audio-progress]');
+      const progressBar = card.querySelector<HTMLElement>('[role="progressbar"]');
+      const status = card.querySelector<HTMLElement>('.music-experience__status');
+      audio?.pause();
+      if (audio) audio.currentTime = 0;
+      card.classList.remove('is-playing');
+      button?.setAttribute('aria-pressed', 'false');
+      button?.setAttribute('aria-label', `Play 15-second ${card.dataset.genre} preview`);
+      if (icon) icon.className = 'bi bi-play-fill';
+      if (progress) progress.style.width = '0%';
+      progressBar?.setAttribute('aria-valuenow', '0');
+      if (status && !status.textContent?.includes('unavailable')) status.textContent = '';
+    };
+
+    const stopActive = () => {
+      if (activeCard) resetCard(activeCard);
+      activeCard = null;
+    };
+
+    cards.forEach((card) => {
+      const audio = card.querySelector<HTMLAudioElement>('[data-audio]');
+      const button = card.querySelector<HTMLButtonElement>('[data-audio-toggle]');
+      const progress = card.querySelector<HTMLElement>('[data-audio-progress]');
+      const progressBar = card.querySelector<HTMLElement>('[role="progressbar"]');
+      const status = card.querySelector<HTMLElement>('.music-experience__status');
+      if (!audio || !button) return;
+
+      const markUnavailable = () => {
+        stopActive();
+        button.disabled = true;
+        button.setAttribute('aria-label', `${card.dataset.genre} audio preview unavailable`);
+        if (status) status.textContent = 'Audio preview unavailable';
+      };
+
+      audio.addEventListener('error', markUnavailable);
+      audio.addEventListener('timeupdate', () => {
+        if (activeCard !== card) return;
+        const elapsed = Math.min(audio.currentTime, 15);
+        if (progress) progress.style.width = `${Math.min((elapsed / 15) * 100, 100)}%`;
+        progressBar?.setAttribute('aria-valuenow', elapsed.toFixed(1));
+        if (audio.currentTime >= 15) {
+          resetCard(card);
+          if (activeCard === card) activeCard = null;
+        }
+      });
+      audio.addEventListener('ended', () => {
+        resetCard(card);
+        if (activeCard === card) activeCard = null;
+      });
+      button.addEventListener('click', async () => {
+        if (button.disabled) return;
+        if (activeCard === card && !audio.paused) {
+          resetCard(card);
+          activeCard = null;
+          return;
+        }
+        if (activeCard && activeCard !== card) stopActive();
+        if (audio.ended || audio.currentTime >= 15) audio.currentTime = 0;
+        activeCard = card;
+        try {
+          await audio.play();
+          card.classList.add('is-playing');
+          button.setAttribute('aria-pressed', 'true');
+          button.setAttribute('aria-label', `Pause ${card.dataset.genre} preview`);
+          const icon = button.querySelector('i');
+          if (icon) icon.className = 'bi bi-pause-fill';
+        } catch {
+          markUnavailable();
+        }
+      });
+    });
+  }
+</script>
+
+<style>
+  .music-experience {
+    --music-red: #CE1126;
+    --music-gold: #FCD116;
+    --music-green: #006B3F;
+    --music-charcoal: #1E2421;
+    --music-ivory: #FAF8F2;
+    --music-white: #FFFFFF;
+    --music-border: #E7E2D8;
+    background-color: var(--music-ivory);
+    background-image: radial-gradient(circle at 8% 86%, rgba(0, 107, 63, .08), transparent 25%), radial-gradient(circle at 50% 34%, rgba(252, 209, 22, .08), transparent 24%), radial-gradient(circle at 92% 88%, rgba(206, 17, 38, .06), transparent 24%), repeating-radial-gradient(circle at 78% 18%, transparent 0 34px, rgba(0, 107, 63, .035) 35px 36px);
+    color: var(--music-charcoal);
+    isolation: isolate;
+    overflow: hidden;
+    padding: 0 0 clamp(4rem, 7vw, 7rem);
+    position: relative;
+  }
+  .music-experience::before { background: linear-gradient(90deg, #CE1126 0%, #CE1126 33.33%, #FCD116 33.33%, #FCD116 66.66%, #006B3F 66.66%, #006B3F 100%); content: ''; height: 4px; left: 0; position: absolute; right: 0; top: 0; }
+  .music-experience .container { max-width: 1200px; }
+  .music-experience__container { position: relative; z-index: 1; }
+  .music-hero-row { min-height: auto; padding-bottom: clamp(3rem, 6vw, 5rem); padding-top: clamp(3.5rem, 7vw, 6rem); }
+  .music-copy-column { position: relative; z-index: 2; }
+  .music-experience__copy { max-width: 540px; }
+  .music-experience__eyebrow { color: var(--music-green); font-size: .76rem; font-weight: 800; letter-spacing: .16em; margin: 0 0 1.25rem; }
+  .music-hero-title { font-family: Georgia, Cambria, 'Times New Roman', serif; font-size: clamp(3.25rem, 5.3vw, 5.9rem); font-weight: 800; letter-spacing: -.045em; line-height: .86; margin: 0; max-width: 650px; width: 100%; }
+  .music-title-line { display: block; max-width: 100%; white-space: nowrap; width: max-content; word-break: normal; overflow-wrap: normal; hyphens: none; }
+  .music-title-where, .music-title-rhythm, .music-title-becomes, .music-title-language { font-size: clamp(3.25rem, 5.3vw, 5.9rem); }
+  .music-title-where, .music-title-language { color: #006B3F; }
+  .music-title-rhythm { color: #FCD116; text-shadow: 0 1px 0 rgba(30, 36, 33, .2); }
+  .music-title-becomes { color: transparent; -webkit-text-stroke: 1.5px #1E2421; text-stroke: 1.5px #1E2421; }
+  @supports not (-webkit-text-stroke: 1px #1E2421) { .music-title-becomes { color: #1E2421; } }
+  .music-intro-text { color: #1E2421; font-size: clamp(1rem, 1.2vw, 1.125rem); line-height: 1.7; margin-top: 1.75rem; max-width: 540px; }
+  .music-soundwave { align-items: center; display: flex; gap: 4px; height: 56px; margin-top: 1.75rem; max-width: 330px; }
+  .music-experience__bar { animation: music-bar-pulse 1.2s ease-in-out infinite alternate; animation-play-state: paused; border-radius: 2px; display: block; height: 30%; width: 5px; }
+  .music-experience__copy.is-visible .music-experience__bar { animation-play-state: running; }
+  .music-experience__bar:nth-child(3n + 1) { background: var(--music-red); }.music-experience__bar:nth-child(3n + 2) { background: var(--music-gold); }.music-experience__bar:nth-child(3n) { background: var(--music-green); }
+  .music-experience__bar:nth-child(4n) { height: 75%; }.music-experience__bar:nth-child(5n) { height: 48%; }.music-experience__bar:nth-child(7n) { height: 95%; }
+  .music-drum-column { align-items: center; display: flex; justify-content: flex-end; }
+  .music-drum-presentation { isolation: isolate; margin-left: auto; max-width: 540px; padding: 0 14px 14px 0; position: relative; width: 100%; }
+  .music-drum-presentation::before { background: #006b3f; border-radius: 18px; content: ''; inset: 14px 0 0 14px; position: absolute; z-index: -1; }
+  .music-drum-presentation::after { background: linear-gradient(90deg, #ce1126 0 33.33%, #fcd116 33.33% 66.66%, #006b3f 66.66% 100%); border-radius: 999px; content: ''; height: 6px; left: 26px; position: absolute; top: -10px; width: 90px; z-index: 3; }
+  .music-drum-frame { background: #ffffff; border: 2px solid #fcd116; border-radius: 16px; box-shadow: 0 20px 45px rgba(0, 60, 35, .14); box-sizing: border-box; margin: 0; overflow: hidden; padding: 8px; position: relative; width: 100%; z-index: 2; }
+  .music-drum-frame img { aspect-ratio: 6 / 5; border-radius: 10px; display: block; height: auto; object-fit: contain; object-position: center; width: 100%; }
+  .music-experience__divider { align-items: center; color: var(--music-charcoal); display: flex; font-size: .72rem; font-weight: 800; gap: .75rem; justify-content: center; letter-spacing: .18em; margin: 1rem 0 2rem; }.music-experience__divider::before, .music-experience__divider::after { background: var(--music-border); content: ''; height: 1px; width: min(28%, 270px); }.music-experience__divider-mark { color: var(--music-charcoal); font-size: .75rem; }
+  .music-experience__card { background: var(--music-white); border: 1px solid var(--music-border); border-radius: 12px; box-shadow: 0 5px 16px rgba(30, 36, 33, .06); display: flex; flex-direction: column; height: 100%; min-height: 310px; padding: 1.5rem; position: relative; transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease; }.music-experience__card::before { background: var(--music-green); border-radius: 12px 12px 0 0; content: ''; height: 5px; left: -1px; position: absolute; right: -1px; top: -1px; }.music-experience__card--red::before { background: var(--music-red); }.music-experience__card--gold::before { background: var(--music-gold); }.music-experience__card--green::before { background: var(--music-green); }.music-experience__card:hover, .music-experience__card:focus-within { box-shadow: 0 12px 24px rgba(30, 36, 33, .12); transform: translateY(-4px); }.music-experience__card-top { align-items: flex-start; display: flex; justify-content: space-between; }.music-experience__number { color: var(--music-charcoal); font-size: .72rem; font-weight: 800; letter-spacing: .14em; opacity: .7; }
+  .music-experience__icon-wrap { align-items: center; background: var(--music-ivory); border-radius: 50%; color: var(--music-green); display: flex; font-size: 1.55rem; height: 64px; justify-content: center; position: relative; width: 64px; }.music-experience__card--red .music-experience__icon-wrap { color: var(--music-red); }.music-experience__card--gold .music-experience__icon-wrap { color: #9b7a00; }.music-experience__play { align-items: center; background: var(--music-green); border: 2px solid var(--music-white); border-radius: 50%; bottom: -6px; color: var(--music-white); cursor: pointer; display: flex; font-size: .9rem; height: 32px; justify-content: center; padding: 0; position: absolute; right: -6px; transition: transform 220ms ease, background-color 220ms ease; width: 32px; }.music-experience__card--red .music-experience__play { background: var(--music-red); }.music-experience__card--gold .music-experience__play { background: #9b7a00; }.music-experience__play:hover, .music-experience__play:focus-visible { transform: scale(1.08); }.music-experience__play:focus-visible { outline: 3px solid var(--music-charcoal); outline-offset: 3px; }.music-experience__play:disabled { cursor: not-allowed; opacity: .55; }
+  .music-experience__card-title { color: var(--music-charcoal); font-family: Georgia, Cambria, 'Times New Roman', serif; font-size: 1.35rem; line-height: 1.15; margin: 1.5rem 0 .7rem; }.music-experience__card-description { font-size: .94rem; line-height: 1.55; margin: 0 0 1.4rem; }.music-experience__card-footer { align-items: center; display: flex; justify-content: space-between; margin-top: auto; }.music-experience__play-label { color: var(--music-green); font-size: .65rem; font-weight: 800; letter-spacing: .1em; }.music-experience__status { color: var(--music-red); font-size: .7rem; }.music-experience__progress { background: var(--music-border); border-radius: 2px; height: 3px; margin-top: .65rem; overflow: hidden; }.music-experience__progress span { background: var(--music-green); display: block; height: 100%; transition: width 120ms linear; width: 0; }.music-experience__active-wave { align-items: center; display: flex; gap: 3px; height: 22px; margin-top: .9rem; opacity: .22; }.music-experience__active-wave span { background: var(--music-green); border-radius: 2px; height: 30%; width: 4px; }.music-experience__card--red .music-experience__active-wave span { background: var(--music-red); }.music-experience__card--gold .music-experience__active-wave span { background: #9b7a00; }.music-experience__card.is-playing .music-experience__active-wave { opacity: 1; }.music-experience__card.is-playing .music-experience__active-wave span { animation: music-bar-pulse .7s ease-in-out infinite alternate; }.music-experience__card.is-playing .music-experience__active-wave span:nth-child(2), .music-experience__card.is-playing .music-experience__active-wave span:nth-child(4) { animation-delay: .2s; }.music-experience__card.is-playing .music-experience__active-wave span:nth-child(3) { animation-delay: .35s; }
+  .music-experience__cta-wrap { display: flex; justify-content: center; margin-top: 3rem; }.music-experience__cta { align-items: center; background: var(--music-green); border: 1px solid var(--music-green); border-radius: 6px; color: var(--music-white); display: inline-flex; font-size: .8rem; font-weight: 800; gap: .75rem; justify-content: center; letter-spacing: .05em; min-height: 48px; padding: .8rem 1.25rem; text-decoration: none; transition: background-color 220ms ease, border-color 220ms ease; }.music-experience__cta i { color: var(--music-gold); }.music-experience__cta:hover, .music-experience__cta:focus { background: var(--music-charcoal); border-color: var(--music-gold); color: var(--music-white); }
+  @keyframes music-bar-pulse { from { transform: scaleY(.55); } to { transform: scaleY(1); } }
+  @media (max-width: 991.98px) { .music-copy-column { text-align: center; }.music-intro-text, .music-soundwave { margin-left: auto; margin-right: auto; }.music-drum-column { justify-content: center; margin-top: 2.5rem; }.music-drum-presentation { margin-inline: auto; max-width: 580px; }.music-hero-title { max-width: 100%; } }
+  @media (max-width: 768px) { .music-drum-presentation { margin: 20px auto 0; max-width: 520px; padding: 0 9px 9px 0; }.music-drum-presentation::before { border-radius: 14px; inset: 9px 0 0 9px; }.music-drum-presentation::after { height: 5px; left: 20px; top: -8px; width: 72px; }.music-drum-frame { border-radius: 14px; padding: 6px; } }
+  @media (max-width: 575.98px) { .music-experience { background-image: radial-gradient(circle at 8% 86%, rgba(0, 107, 63, .06), transparent 25%), radial-gradient(circle at 92% 88%, rgba(206, 17, 38, .04), transparent 24%); }.music-title-where, .music-title-rhythm, .music-title-becomes, .music-title-language { font-size: clamp(2.45rem, 12vw, 4rem); }.music-hero-title { letter-spacing: -.04em; line-height: .9; }.music-experience__cta { width: 100%; } }
+  @media (prefers-reduced-motion: reduce) { .music-experience__bar, .music-experience__card.is-playing .music-experience__active-wave span { animation: none; }.music-experience__card, .music-experience__play, .music-experience__cta, .music-experience__progress span { transition: none; }.music-experience__card:hover, .music-experience__card:focus-within, .music-experience__play:hover, .music-experience__play:focus-visible { transform: none; } }
+</style>

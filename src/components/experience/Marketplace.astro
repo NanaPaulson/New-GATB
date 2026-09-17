@@ -1,0 +1,98 @@
+---
+interface MarketplaceItem {
+  name: string;
+  description: string;
+  image: string;
+  alt: string;
+}
+
+const marketplaceItems: MarketplaceItem[] = [
+  {
+    name: 'Kente',
+    description: 'Handwoven heritage in vibrant patterns',
+    image: '/images/Marketplace2.png',
+    alt: 'Colorful handcrafted traditional Ghanaian Krobo glass beads',
+  },
+  {
+    
+    name: 'Shea Butter',
+    description: 'Natural Ghanaian skincare rooted in tradition.',
+    image: '/images/Marketplace5.png',
+    alt: 'Handcrafted traditional wooden Ghanaian Akuaba fertility doll',
+  },
+  {
+    name: 'Beads',
+    description: 'Colorful recycled-glass beads made by hand.',
+    image: '/images/Marketplace.png',
+    alt: 'Folded handwoven Ghanaian Kente cloth with traditional patterns',
+  },
+  {
+    name: 'Akuaba Doll',
+    description: 'An iconic handcrafted symbol of heritage.',
+    image: '/images/Marketplace1.png',
+    alt: 'Authentic hand-loomed traditional Ghanaian smock garment',
+  },
+  {
+    name: 'Ghanaian Smock',
+    description: 'Traditional Craftsmanship from Northern Ghana',
+    
+    image: '/images/Marketplace3.png',
+    alt: 'Hand-carved traditional Ghanaian wooden stool',
+  },
+  {
+    name: 'carved Stool',
+    description: 'A timeless symbol of identity and tradition',
+    image: '/images/Marketplace4.png',
+    alt: 'Pure organic unrefined natural Ghanaian shea butter',
+  },
+];
+---
+
+<section id="marketplace" class="experience-section marketplace-section" aria-labelledby="marketplace-heading">
+  <div class="header-container">
+    <!-- Section Introduction -->
+    <header class="marketplace-section__header text-center">
+      <p class="section-eyebrow reveal reveal-up">THE MARKETPLACE</p>
+      <h2 id="marketplace-heading" class="section-heading reveal reveal-up">
+        Discover Ghanaian Craftsmanship
+      </h2>
+      <p class="marketplace-intro reveal reveal-up">
+        Explore authentic clothing, artistry and natural products that celebrate Ghana’s rich cultural heritage.
+      </p>
+    </header>
+
+    <!-- 6-Product Responsive Grid: 3 cols desktop, 2 cols tablet, 1 col mobile -->
+    <div class="row g-4 marketplace-grid stagger-group">
+      {
+        marketplaceItems.map((item) => (
+          <div class="col-12 col-md-6 col-lg-4 d-flex">
+            <article class="marketplace-card flex-fill">
+              <div class="marketplace-card__media">
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  width="600"
+                  height="338"
+                  class="marketplace-card__image"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="marketplace-card__body">
+                <h3 class="marketplace-card__title">{item.name}</h3>
+                <p class="marketplace-card__desc">{item.description}</p>
+              </div>
+            </article>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Vendor / Marketplace CTA Button -->
+    <div class="marketplace-action text-center mt-5 pt-2 reveal reveal-up">
+      <a href="#vendor-registration" class="btn ticket-button">
+        EXPLORE THE MARKETPLACE
+      </a>
+    </div>
+  </div>
+</section>

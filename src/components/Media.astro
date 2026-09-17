@@ -1,0 +1,148 @@
+---
+const mediaVideos = [
+  {
+    id: 'promo-video',
+    title: 'Promo Video',
+    description: 'Discover the culture, music and community that make Ghana Day In Tampa Bay unforgettable.',
+    src: '/videos/ghana-day-promo.mp4',
+    poster: '/images/Family.jpg',
+    featured: true,
+  },
+  {
+    id: 'president-message',
+    title: 'Message from the President',
+    description: 'A welcome message sharing the vision and purpose of the celebration.',
+    src: '/videos/president-message.mp4',
+    poster: '/images/president.jpeg',
+    featured: false,
+  },
+  {
+    id: 'executive-message',
+    title: 'Message from the Team',
+    description: 'An invitation to celebrate, connect and build community together.',
+    src: '/videos/executive-message.mp4',
+    poster: '/images/Executive message.jpeg',
+    featured: false,
+  },
+];
+
+const socialLinks = [
+  {
+    name: 'Facebook',
+    href: 'https://www.facebook.com/share/1DWFR5MSaq/?mibextid=wwXIfr',
+    icon: 'bi-facebook',
+  },
+  {
+    name: 'Instagram',
+    href: 'https://www.instagram.com/reel/DcvzoJXRD0J/?stkn=ZGo5MnN6NWg4OHg4',
+    icon: 'bi-instagram',
+  },
+  {
+    name: 'TikTok',
+    href: 'https://www.tiktok.com/@ghanadayintampabay?_r=1&_t=ZP-9908RwVXfTD',
+    icon: 'bi-tiktok',
+  },
+];
+---
+
+<section id="media" class="supporting-section media-section" aria-labelledby="media-heading">
+  <div class="header-container">
+    <header class="supporting-section__header text-center">
+      <p class="section-eyebrow reveal reveal-up">MEDIA</p>
+      <h2 id="media-heading" class="section-heading reveal reveal-up">Watch. Connect. Celebrate.</h2>
+      <p class="supporting-section__copy reveal reveal-up">
+        Experience the stories, vision and energy behind Ghana Day In Tampa Bay.
+      </p>
+    </header>
+
+    <div class="row g-4 media-video-grid align-items-stretch stagger-group">
+      <div class="col-12 col-lg-8 d-flex">
+        <article class="media-video-card media-video-card--featured">
+          {
+            mediaVideos.slice(0, 1).map((video) => (
+              <div class="media-video-card__player">
+                <video
+                  controls
+                  playsinline
+                  preload="metadata"
+                  poster={video.poster}
+                  class="media-video"
+                  aria-label={video.title}
+                >
+                  <source src={video.src} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <div class="media-video-card__body">
+                <h3 class="media-video-card__title">{video.title}</h3>
+                <p class="media-video-card__description">{video.description}</p>
+              </div>
+            ))
+          }
+        </article>
+      </div>
+      <div class="col-12 col-lg-4 d-flex">
+        <div class="media-video-card__supporting-list">
+          {
+            mediaVideos.slice(1).map((video) => (
+              <article class="media-video-card">
+                <div class="media-video-card__player">
+                  <video
+                    controls
+                    playsinline
+                    preload="metadata"
+                    poster={video.poster}
+                    class="media-video"
+                    aria-label={video.title}
+                  >
+                    <source src={video.src} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <div class="media-video-card__body">
+                  <h3 class="media-video-card__title">{video.title}</h3>
+                  <p class="media-video-card__description">{video.description}</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="media-connection-strip reveal reveal-up">
+      <p>Follow the journey and stay connected with Ghana Day In Tampa Bay.</p>
+      <nav class="media-social-links" aria-label="Ghana Day In Tampa Bay social media">
+        {
+          socialLinks.map((social) => (
+            <a
+              href={social.href}
+              class="media-social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Ghana Day In Tampa Bay on ${social.name}`}
+              title={social.name}
+            >
+              <i class={`bi ${social.icon}`} aria-hidden="true"></i>
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+  </div>
+</section>
+
+<script>
+  const mediaSection = document.querySelector('#media');
+  const videos = mediaSection?.querySelectorAll('video');
+
+  videos?.forEach((currentVideo) => {
+    currentVideo.addEventListener('play', () => {
+      videos.forEach((otherVideo) => {
+        if (otherVideo !== currentVideo && !otherVideo.paused) {
+          otherVideo.pause();
+        }
+      });
+    });
+  });
+</script>

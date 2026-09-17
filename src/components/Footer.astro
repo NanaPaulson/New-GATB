@@ -1,0 +1,271 @@
+---
+const currentYear = new Date().getFullYear();
+
+const exploreLinks = [
+  { label: 'About Us', href: '#about' },
+  { label: 'History', href: '#history' },
+  { label: 'The Event', href: '#festival-program' },
+  { label: 'Music', href: '#music' },
+  { label: 'Food', href: '#food' },
+  { label: 'Marketplace', href: '#marketplace' },
+];
+
+const getInvolvedLinks = [
+  { label: 'Sponsorship', href: '#sponsorship' },
+  { label: 'Vendor Registration', href: '#vendor-registration' },
+  { label: 'Volunteer', href: '#volunteer' },
+  { label: 'Business Forum', href: '#business-forum' },
+  { label: 'Contact Us', href: '#contact' },
+];
+
+const socialLinks = [
+  {
+    name: 'Facebook',
+    href: 'https://www.facebook.com/share/1DWFR5MSaq/?mibextid=wwXIfr',
+    icon: 'bi-facebook',
+    ariaLabel: 'Ghana Day In Tampa Bay on Facebook',
+  },
+  {
+    name: 'Instagram',
+    href: 'https://www.instagram.com/reel/DcvzoJXRD0J/?stkn=ZGo5MnN6NWg4OHg4',
+    icon: 'bi-instagram',
+    ariaLabel: 'Ghana Day In Tampa Bay on Instagram',
+  },
+  {
+    name: 'TikTok',
+    href: 'https://www.tiktok.com/@ghanadayintampabay?_r=1&_t=ZP-9908RwVXfTD',
+    icon: 'bi-tiktok',
+    ariaLabel: 'Ghana Day In Tampa Bay on TikTok',
+  },
+];
+---
+
+<footer class="site-footer" aria-label="Site Footer">
+  <!-- 1. Join the Celebration CTA Band -->
+  <section class="footer-cta reveal reveal-up" aria-labelledby="footer-cta-heading">
+    <div class="header-container text-center">
+      <p class="section-eyebrow">JOIN THE CELEBRATION</p>
+      <h2 id="footer-cta-heading" class="footer-cta-heading">
+        Experience Ghana Day in Tampa Bay
+      </h2>
+      <p class="footer-cta-desc">
+        Celebrate culture, community, food, fashion, music and heritage with us.
+      </p>
+      <div class="footer-cta-actions">
+        <a href="#getting-there" class="btn btn-footer-primary">
+          GETTING THERE
+        </a>
+        <a href="#sponsorship" class="btn btn-footer-secondary">
+          BECOME A SPONSOR
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Main 4-Column Footer -->
+  <div class="footer-main reveal reveal-up">
+    <div class="header-container">
+      <div class="row g-4 g-lg-5">
+        <!-- Column 1: Brand -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="footer-brand">
+            <a href="/" class="footer-logo-link" aria-label="Ghana Day In Tampa Bay Home">
+              <img
+                src="/images/logo.png"
+                alt="Ghana Day In Tampa Bay"
+                class="footer-logo"
+                width="200"
+                height="68"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <p class="footer-brand-text">
+              Celebrating Ghanaian culture and strengthening community connections across Tampa Bay.
+            </p>
+            <address class="footer-contact">
+              <span class="footer-contact-heading">CONTACT</span>
+              <a href="mailto:info@ghanadaytb.com" class="footer-nav-link">
+                <i class="bi bi-envelope" aria-hidden="true"></i>
+                <span>info@ghanadaytb.com</span>
+              </a>
+              <a href="tel:+17274703000" class="footer-nav-link">
+                <i class="bi bi-telephone" aria-hidden="true"></i>
+                <span>(727) 470-3000</span>
+              </a>
+            </address>
+            <div class="footer-social-links" aria-label="Social media links">
+              {
+                socialLinks.map((social) => (
+                  <a
+                    href={social.href}
+                    class="social-circle-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.ariaLabel}
+                  >
+                    <i class={`bi ${social.icon}`} aria-hidden="true"></i>
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2: Explore -->
+        <div class="col-12 col-sm-6 col-md-3 col-lg-2">
+          <div class="footer-nav-col">
+            <h3 class="footer-heading">EXPLORE</h3>
+            <nav aria-label="Footer Explore Navigation">
+              <ul class="footer-nav-list">
+                {
+                  exploreLinks.map((link) => (
+                    <li>
+                      <a href={link.href} class="footer-nav-link">
+                        {link.label}
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <!-- Column 3: Get Involved -->
+        <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+          <div class="footer-nav-col">
+            <h3 class="footer-heading">GET INVOLVED</h3>
+            <nav aria-label="Footer Get Involved Navigation">
+              <ul class="footer-nav-list">
+                {
+                  getInvolvedLinks.map((link) => (
+                    <li>
+                      <a href={link.href} class="footer-nav-link">
+                        {link.label}
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <!-- Column 4: Stay Connected -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="footer-newsletter">
+            <h3 class="footer-heading">STAY CONNECTED</h3>
+            <p class="footer-newsletter-desc">
+              Receive festival news, announcements and community updates.
+            </p>
+            <form class="newsletter-form" id="footerNewsletterForm" novalidate>
+              <div class="mb-2">
+                <label for="footerNewsletterEmail" class="visually-hidden">
+                  Email address
+                </label>
+                <input
+                  type="email"
+                  id="footerNewsletterEmail"
+                  name="email"
+                  class="form-control newsletter-input"
+                  placeholder="Email address"
+                  autocomplete="email"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-footer-subscribe w-100">
+                SUBSCRIBE
+              </button>
+              <p class="newsletter-privacy">We respect your privacy.</p>
+              <div
+                id="newsletterStatus"
+                class="newsletter-status"
+                aria-live="polite"
+              ></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Bottom Legal Bar -->
+  <div class="footer-bottom-bar">
+    <div class="header-container">
+      <div class="footer-bottom-content">
+        <div class="footer-copyright">
+          &copy; {currentYear} Ghana Day In Tampa Bay. All rights reserved.
+        </div>
+        <div class="footer-legal-links">
+          <span class="legal-item">Privacy Policy</span>
+          <span class="legal-sep" aria-hidden="true">&bull;</span>
+          <span class="legal-item">Accessibility</span>
+        </div>
+        <a class="back-to-top" href="#" aria-label="Back to top" title="Back to top">
+          <i class="bi bi-arrow-up" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.55rem;
+    margin: 0;
+    font-style: normal;
+  }
+
+  .footer-contact-heading {
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+  }
+
+  .footer-contact .footer-nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+</style>
+
+<script>
+  const form = document.getElementById('footerNewsletterForm') as HTMLFormElement | null;
+  const statusEl = document.getElementById('newsletterStatus');
+  const emailInput = document.getElementById('footerNewsletterEmail') as HTMLInputElement | null;
+
+  if (form && statusEl && emailInput) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = emailInput.value.trim();
+
+      if (!email || !emailInput.checkValidity()) {
+        statusEl.textContent = 'Please enter a valid email address.';
+        statusEl.className = 'newsletter-status text-danger';
+        emailInput.focus();
+        return;
+      }
+
+      // No backend endpoint connected yet; inform the user gracefully without fake claims
+      statusEl.textContent = 'Newsletter registration will be available soon.';
+      statusEl.className = 'newsletter-status text-success';
+      form.reset();
+    });
+  }
+
+  const backToTop = document.querySelector('.back-to-top');
+
+  if (backToTop) {
+    const updateBackToTop = () => {
+      backToTop.classList.toggle('is-visible', window.scrollY > 320);
+    };
+
+    updateBackToTop();
+    window.addEventListener('scroll', updateBackToTop, { passive: true });
+  }
+</script>

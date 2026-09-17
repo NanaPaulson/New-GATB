@@ -1,0 +1,116 @@
+---
+const involvementOptions = [
+  {
+    id: 'sponsorship',
+    icon: 'bi-heart',
+    title: 'Sponsorship',
+    description:
+      'Support a meaningful cultural celebration and help create opportunities for community connection, education and growth.',
+    action: 'Explore Sponsorship',
+    actionHref: '/images/Vendor Packages.jpeg',
+  },
+  {
+    id: 'vendor-packages',
+    icon: 'bi-box-seam',
+    title: 'View Vendor Packages',
+    description:
+      'Bring your food, products or services to an audience gathered around Ghanaian culture and local community.',
+    action: 'View Vendor Packages',
+    actionHref: '/images/Vendor Application.jpeg',
+  },
+  {
+    id: 'vendor-registration',
+    icon: 'bi-shop-window',
+    title: 'Vendor Registration',
+    description:
+      'Bring your food, products or services to an audience gathered around Ghanaian culture and local community.',
+    action: 'Register as a Vendor',
+    actionHref: 'https://docs.google.com/forms/d/e/1FAIpQLScEDQotr6bFZbWyqfXXKsD36oT26nKbxQwJKnQHXqk4A077OA/viewform',
+  },
+];
+---
+
+<section id="get-involved" class="supporting-section involvement-section" aria-labelledby="get-involved-heading">
+  <div class="header-container">
+    <header class="supporting-section__header text-center">
+      <p class="section-eyebrow reveal reveal-up">GET INVOLVED</p>
+      <h2 id="get-involved-heading" class="section-heading reveal reveal-up">Help Bring the Celebration to Life</h2>
+      <p class="supporting-section__intro reveal reveal-up">
+        There is a place for everyone to contribute, connect and help Ghana Day In Tampa Bay grow.
+      </p>
+    </header>
+
+    <div class="get-involved-container">
+      <div class="row g-4 justify-content-center stagger-group">
+        {
+          involvementOptions.map((option) => (
+            <div class="col-12 col-md-6 col-lg-4 d-flex">
+              <article id={option.id} class="involvement-card d-flex flex-column w-100 h-100">
+                <i class={`bi ${option.icon} involvement-card__icon`} aria-hidden="true"></i>
+                <h3 class="involvement-card__title">{option.title}</h3>
+                <p class="involvement-card__description">{option.description}</p>
+                <div class="involvement-card__action">
+                  <a
+                    href={option.actionHref ?? '#contact'}
+                    class="involvement-card__link"
+                    target={option.actionHref ? '_blank' : undefined}
+                    rel={option.actionHref ? 'noopener noreferrer' : undefined}
+                  >
+                    {option.action}
+                  </a>
+                </div>
+              </article>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tickets" class="supporting-section tickets-section" aria-labelledby="tickets-heading">
+  <div class="header-container text-center">
+    <p class="section-eyebrow reveal reveal-up">TICKETS</p>
+    <h2 id="tickets-heading" class="section-heading reveal reveal-up">Be Part of Ghana Day In Tampa Bay</h2>
+    <p class="supporting-section__intro reveal reveal-up">
+      Ticket information and event details will be announced as plans are finalized.
+    </p>
+    <span class="availability-note">Ticket details: To Be Announced</span>
+  </div>
+</section>
+
+<section id="contact" class="supporting-section contact-section" aria-labelledby="contact-heading">
+  <div class="header-container">
+    <div class="row g-4 g-lg-5 align-items-start">
+      <div class="col-12 col-lg-5">
+        <p class="section-eyebrow reveal reveal-up">CONTACT US</p>
+        <h2 id="contact-heading" class="section-heading reveal reveal-up">Let’s Connect</h2>
+        <p class="supporting-section__copy reveal reveal-up">
+          Have a question about the festival, partnerships or getting involved? Send the team a message and we will be in touch.
+        </p>
+        <p class="contact-note">Event date: Saturday, November 7, 2026. Venue and ticket details: To Be Announced.</p>
+      </div>
+      <div class="col-12 col-lg-7">
+        <form class="contact-form" aria-label="Contact Ghana Day In Tampa Bay">
+          <div class="row g-3">
+            <div class="col-12 col-md-6">
+              <label for="contact-name" class="form-label">Name</label>
+              <input id="contact-name" name="name" type="text" class="form-control" autocomplete="name" required />
+            </div>
+            <div class="col-12 col-md-6">
+              <label for="contact-email" class="form-label">Email</label>
+              <input id="contact-email" name="email" type="email" class="form-control" autocomplete="email" required />
+            </div>
+            <div class="col-12">
+              <label for="contact-message" class="form-label">Message</label>
+              <textarea id="contact-message" name="message" class="form-control" rows="5" required></textarea>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn ticket-button">SEND MESSAGE</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

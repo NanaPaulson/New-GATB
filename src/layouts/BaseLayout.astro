@@ -1,0 +1,31 @@
+---
+import '../styles/global.css';
+import '../styles/animations.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Ghana Day In Tampa Bay | Celebrate • Connect • Belong',
+  description = 'Join us for Ghana Day In Tampa Bay – celebrating Ghanaian culture, music, food, fashion, and community in Tampa Bay, Florida.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+    <script src="../scripts/bootstrap.ts"></script>
+    <script src="../scripts/animations.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,274 @@
+/* Shared motion system */
+:root {
+  --motion-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@keyframes page-header-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.site-header {
+  animation: page-header-in 350ms var(--motion-ease) both;
+}
+
+@keyframes mobile-nav-in {
+  from { opacity: 0.85; }
+  to { opacity: 1; }
+}
+
+.site-offcanvas.show .site-offcanvas-body {
+  animation: mobile-nav-in 180ms ease-out both;
+}
+
+.navbar-nav .nav-link::after {
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 200ms var(--motion-ease);
+}
+
+.navbar-nav .nav-link.active::after {
+  transform: scaleX(1);
+}
+
+.hero-entrance {
+  animation: hero-item-in 560ms var(--motion-ease) both;
+}
+
+.hero-entrance--1 {
+  animation-delay: 80ms;
+}
+
+.hero-entrance--2 {
+  animation-delay: 160ms;
+}
+
+.hero-entrance--3 {
+  animation-delay: 240ms;
+}
+
+.hero-entrance--4 {
+  animation-delay: 320ms;
+}
+
+.reveal {
+  opacity: 0;
+  transition: opacity 600ms var(--motion-ease), transform 600ms var(--motion-ease);
+}
+
+.reveal-up {
+  transform: translateY(18px);
+}
+
+.reveal-left {
+  transform: translateX(-24px);
+}
+
+.reveal-right {
+  transform: translateX(24px);
+}
+
+.reveal.is-visible,
+.reveal.is-visible.reveal-up,
+.reveal.is-visible.reveal-left,
+.reveal.is-visible.reveal-right {
+  opacity: 1;
+  transform: translate(0);
+}
+
+.stagger-group > * {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 600ms var(--motion-ease), transform 600ms var(--motion-ease), box-shadow 180ms ease, border-color 180ms ease, background-color 180ms ease;
+}
+
+.stagger-group.is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-group.is-visible > *:nth-child(2) { transition-delay: 70ms; }
+.stagger-group.is-visible > *:nth-child(3) { transition-delay: 140ms; }
+.stagger-group.is-visible > *:nth-child(4) { transition-delay: 210ms; }
+.stagger-group.is-visible > *:nth-child(5) { transition-delay: 280ms; }
+.stagger-group.is-visible > *:nth-child(6) { transition-delay: 350ms; }
+
+.timeline-wrapper.reveal {
+  transform: translateY(18px);
+}
+
+.timeline-wrapper.reveal.is-visible {
+  transform: translateY(0);
+}
+
+.timeline-track {
+  transform-origin: top center;
+  transform: scaleY(0);
+  transition: transform 700ms var(--motion-ease);
+}
+
+.timeline-wrapper.is-visible .timeline-track {
+  transform: scaleY(1);
+}
+
+.timeline-item {
+  opacity: 0;
+  transition: opacity 600ms var(--motion-ease), transform 600ms var(--motion-ease);
+}
+
+.timeline-item.timeline-left {
+  transform: translateX(-24px);
+}
+
+.timeline-item.timeline-right {
+  transform: translateX(24px);
+}
+
+.timeline-wrapper.is-visible .timeline-item {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.timeline-wrapper.is-visible .timeline-item:nth-child(2) { transition-delay: 100ms; }
+.timeline-wrapper.is-visible .timeline-item:nth-child(3) { transition-delay: 200ms; }
+.timeline-wrapper.is-visible .timeline-item:nth-child(4) { transition-delay: 300ms; }
+.timeline-wrapper.is-visible .timeline-item:nth-child(5) { transition-delay: 400ms; }
+.timeline-wrapper.is-visible .timeline-item:nth-child(6) { transition-delay: 500ms; }
+
+.program-item {
+  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+.program-item:hover,
+.program-item:focus-within {
+  transform: translateX(4px);
+  background-color: var(--color-ivory);
+  border-left-color: var(--color-primary);
+}
+
+.music-genres-list.stagger-group > .genre-item {
+  transform: scale(0.96);
+}
+
+.music-genres-list.stagger-group.is-visible > .genre-item {
+  transform: scale(1);
+}
+
+.music-genres-list .genre-item:hover,
+.music-genres-list .genre-item:focus-within {
+  transform: scale(1.06);
+}
+
+.media-video-card__player {
+  transition: box-shadow 180ms ease;
+}
+
+.media-video-card__player:focus-within,
+.media-video-card__player:hover {
+  box-shadow: inset 0 0 0 1px rgba(0, 107, 63, 0.3);
+}
+
+.btn,
+.involvement-card__link,
+.social-circle-link {
+  transition: transform 160ms ease, box-shadow 160ms ease, color 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+.btn:hover,
+.btn:focus-visible,
+.involvement-card__link:hover,
+.involvement-card__link:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(37, 37, 37, 0.12);
+}
+
+.social-circle-link:hover,
+.social-circle-link:focus-visible {
+  transform: translateY(-2px);
+  color: var(--color-primary);
+}
+
+.contact-form .form-control:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.2rem rgba(0, 107, 63, 0.14);
+}
+
+.footer-main.reveal {
+  transform: translateY(18px);
+}
+
+.footer-main.reveal.is-visible {
+  transform: translateY(0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .fashion-card:hover,
+  .marketplace-card:hover {
+    transform: translateY(-6px);
+    border-top-color: var(--color-primary);
+    box-shadow: 0 14px 28px rgba(37, 37, 37, 0.12);
+  }
+
+  .fashion-card:hover .fashion-card__image,
+  .marketplace-card:hover .marketplace-card__image {
+    transform: scale(1.02);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .timeline-item.timeline-left,
+  .timeline-item.timeline-right {
+    transform: translateY(18px);
+  }
+
+  .timeline-wrapper.is-visible .timeline-item.timeline-left,
+  .timeline-wrapper.is-visible .timeline-item.timeline-right {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal,
+  .stagger-group > *,
+  .timeline-item,
+  .timeline-track {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Content remains fully visible if JavaScript is unavailable. */
+html:not(.motion-ready) .reveal,
+html:not(.motion-ready) .stagger-group > *,
+html:not(.motion-ready) .timeline-item,
+html:not(.motion-ready) .timeline-track {
+  opacity: 1 !important;
+  transform: none !important;
+}
