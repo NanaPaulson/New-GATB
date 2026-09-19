@@ -182,17 +182,23 @@
   const heroContentPanel = document.querySelector<HTMLElement>('#homeHeroContentPanel');
 
   if (heroCarousel && heroContentPanel) {
+    const mobileContentQuery = window.matchMedia('(max-width: 767.98px)');
+
     const syncHeroContent = () => {
       const activeSlide = heroCarousel.querySelector<HTMLElement>('.carousel-item.active');
       const activeImage = activeSlide?.querySelector('img')?.getAttribute('src');
       const isBannerSlide = activeImage === '/images/Banner.jpeg';
-      heroContentPanel.hidden = Boolean(isBannerSlide);
-      heroContentPanel.setAttribute('aria-hidden', String(Boolean(isBannerSlide)));
+      const showBannerCard = isBannerSlide && mobileContentQuery.matches;
+      const hideCard = isBannerSlide && !showBannerCard;
+      heroContentPanel.hidden = hideCard;
+      heroContentPanel.setAttribute('aria-hidden', String(hideCard));
+      heroContentPanel.parentElement?.classList.remove('banner-content-overlay');
       heroContentPanel.classList.toggle('hero-content--right', !isBannerSlide);
     };
 
     syncHeroContent();
     heroCarousel.addEventListener('slid.bs.carousel', syncHeroContent);
+    mobileContentQuery.addEventListener('change', syncHeroContent);
   }
 
   const countdown = document.querySelector<HTMLElement>('[data-event-date]');

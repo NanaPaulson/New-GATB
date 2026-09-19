@@ -661,7 +661,7 @@ input:focus-visible,
   .hero-carousel .carousel-media {
     background: #f7f7f4;
     height: auto;
-    aspect-ratio: 24 / 7;
+    aspect-ratio: 1600 / 511;
     overflow: hidden;
     position: relative;
     width: 100%;
@@ -675,6 +675,24 @@ input:focus-visible,
     object-fit: contain;
     object-position: center;
     position: relative;
+    width: 100%;
+  }
+
+  /* First slide only: full-bleed banner, no pillarboxing from the shared aspect-ratio box */
+  .hero-carousel .carousel-item:first-child .carousel-media {
+    background: transparent;
+    margin: 0;
+    max-width: none;
+    padding: 0;
+    width: 100%;
+  }
+
+  .hero-carousel .carousel-item:first-child .carousel-media .hero-image,
+  .hero-carousel .carousel-item:first-child .carousel-image {
+    display: block;
+    height: 100%;
+    max-width: none;
+    object-fit: contain;
     width: 100%;
   }
 
