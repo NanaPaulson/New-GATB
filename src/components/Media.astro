@@ -26,23 +26,6 @@ const mediaVideos = [
   },
 ];
 
-const socialLinks = [
-  {
-    name: 'Facebook',
-    href: 'https://www.facebook.com/share/1DWFR5MSaq/?mibextid=wwXIfr',
-    icon: 'bi-facebook',
-  },
-  {
-    name: 'Instagram',
-    href: 'https://www.instagram.com/reel/DcvzoJXRD0J/?stkn=ZGo5MnN6NWg4OHg4',
-    icon: 'bi-instagram',
-  },
-  {
-    name: 'TikTok',
-    href: 'https://www.tiktok.com/@ghanadayintampabay?_r=1&_t=ZP-9908RwVXfTD',
-    icon: 'bi-tiktok',
-  },
-];
 ---
 
 <section id="media" class="supporting-section media-section" aria-labelledby="media-heading">
@@ -110,25 +93,6 @@ const socialLinks = [
       </div>
     </div>
 
-    <div class="media-connection-strip reveal reveal-up">
-      <p>Follow the journey and stay connected with Ghana Day In Tampa Bay.</p>
-      <nav class="media-social-links" aria-label="Ghana Day In Tampa Bay social media">
-        {
-          socialLinks.map((social) => (
-            <a
-              href={social.href}
-              class="media-social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Ghana Day In Tampa Bay on ${social.name}`}
-              title={social.name}
-            >
-              <i class={`bi ${social.icon}`} aria-hidden="true"></i>
-            </a>
-          ))
-        }
-      </nav>
-    </div>
   </div>
 </section>
 
