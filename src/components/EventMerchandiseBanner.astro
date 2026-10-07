@@ -1,0 +1,223 @@
+<article class="event-merchandise" aria-labelledby="event-merchandise-title">
+  <div class="event-merchandise__content">
+    <p class="event-merchandise__label">OFFICIAL EVENT MERCHANDISE</p>
+    <h3 id="event-merchandise-title" class="event-merchandise__title">Wear the Celebration</h3>
+    <p class="event-merchandise__description">
+      Get the official Ghana Day in Tampa Bay T-shirt and represent the culture before, during and after the celebration.
+    </p>
+    <p class="event-merchandise__price"><strong>$29.99</strong> <span>EACH</span></p>
+    <div class="event-merchandise__colors" aria-label="Available T-shirt colors">
+      <span class="event-merchandise__color event-merchandise__color--black"><span aria-hidden="true"></span>BLACK</span>
+      <span class="event-merchandise__color event-merchandise__color--red"><span aria-hidden="true"></span>RED</span>
+      <span class="event-merchandise__color event-merchandise__color--yellow"><span aria-hidden="true"></span>YELLOW</span>
+      <span class="event-merchandise__color event-merchandise__color--green"><span aria-hidden="true"></span>GREEN</span>
+    </div>
+    <p class="event-merchandise__note">Pick a color and size • Sizes run one size smaller</p>
+    <a
+      class="event-merchandise__button"
+      href="/images/Buy%20TShirt.jpeg"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      ORDER YOUR T-SHIRT
+    </a>
+  </div>
+
+  <div class="event-merchandise__media">
+    <img
+      class="event-merchandise__image"
+      src="/images/Buy%20TShirt.jpeg"
+      alt="Official Ghana Day in Tampa Bay T-shirts available in black, red, yellow and green"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+</article>
+          background: var(--color-primary);
+<style>
+  .event-merchandise {
+    display: grid;
+    grid-template-columns: 58% 42%;
+    min-width: 0;
+    margin-top: clamp(36px, 3vw, 48px);
+    overflow: hidden;
+    border-top: 3px solid #b58a2a;
+    border-radius: 3px;
+    background: var(--color-primary);
+  }
+
+  .event-merchandise__content {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: clamp(2rem, 4vw, 4.5rem);
+    color: #fffaf0;
+  }
+
+  .event-merchandise__label {
+    margin: 0 0 1rem;
+    color: #f1ce72;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+  }
+
+  .event-merchandise__title {
+    margin: 0;
+    color: var(--color-white, #fff);
+    font-size: clamp(2rem, 3.4vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.08;
+  }
+
+  .event-merchandise__description {
+    max-width: 600px;
+    margin: 1.25rem 0 0;
+    color: #f8e9dc;
+    font-size: clamp(1rem, 1.35vw, 1.125rem);
+    line-height: 1.65;
+  }
+
+  .event-merchandise__price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.55rem;
+    margin: 1.5rem 0 0;
+    color: #fffaf0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .event-merchandise__price strong {
+    color: #f1ce72;
+    font-size: clamp(1.45rem, 2.2vw, 2rem);
+    letter-spacing: 0;
+  }
+
+  .event-merchandise__colors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1.25rem;
+  }
+
+  .event-merchandise__color {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #fffaf0;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .event-merchandise__color > span {
+    display: inline-block;
+    width: 0.8rem;
+    height: 0.8rem;
+    border: 1px solid rgba(255, 250, 240, 0.8);
+    border-radius: 50%;
+  }
+
+  .event-merchandise__color--black > span {
+    background: #111;
+  }
+
+  .event-merchandise__color--red > span {
+    background: #c62828;
+  }
+
+  .event-merchandise__color--yellow > span {
+    background: #f1ce26;
+  }
+
+  .event-merchandise__color--green > span {
+    background: #16834b;
+  }
+
+  .event-merchandise__note {
+    margin: 1.25rem 0 0;
+    color: #f8e9dc;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .event-merchandise__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    margin-top: 1.75rem;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid #fffaf0;
+    border-radius: 2px;
+    color: var(--color-primary);
+    background: #f1ce72;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .event-merchandise__button:hover,
+  .event-merchandise__button:focus-visible {
+    color: #fffaf0;
+    background: var(--color-primary-hover);
+  }
+
+  .event-merchandise__media {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(16px, 2vw, 28px);
+    background: #f7f1e8;
+  }
+
+  .event-merchandise__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: 520px;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  @media (max-width: 1023.98px) {
+    .event-merchandise {
+      grid-template-columns: 1fr;
+    }
+
+    .event-merchandise__media {
+      order: 1;
+    }
+
+    .event-merchandise__content {
+      order: 2;
+      padding: clamp(2rem, 6vw, 3.5rem);
+    }
+
+    .event-merchandise__image {
+      width: 100%;
+      height: auto;
+      max-height: none;
+      object-fit: contain;
+    }
+
+    .event-merchandise__button {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    .event-merchandise__content {
+      padding: 1.75rem;
+    }
+  }
+</style>

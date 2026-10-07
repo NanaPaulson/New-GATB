@@ -1,0 +1,318 @@
+---
+import EventMerchandiseBanner from './EventMerchandiseBanner.astro';
+
+const officialTikTokUrl = 'https://www.tiktok.com/@ghanadayintampabay?_r=1&_t=ZP-9908RwVXfTD';
+
+const events = [
+  {
+    type: 'ONLINE EVENT',
+    typeClass: 'upcoming-event-card__type--burgundy',
+    title: 'TikTok Live: Let’s Talk About Ghana Day',
+    date: 'Friday, October 9, 2026',
+    detailIcon: 'bi-clock',
+    detail: '6:00 PM EST',
+    description: 'Follow us and join the conversation live.',
+    image: '/images/TikTok%20Live.jpeg',
+    alt: 'TikTok Live event about Ghana Day in Tampa Bay',
+    action: 'JOIN THE LIVE',
+    href: officialTikTokUrl,
+    actionClass: 'upcoming-event-card__action--outline',
+    externalLabel: 'Join the Ghana Day in Tampa Bay TikTok Live',
+  },
+  {
+    type: 'FESTIVAL FEATURE',
+    typeClass: 'upcoming-event-card__type--gold',
+    title: 'Jollof Competition',
+    date: 'Saturday, November 7, 2026',
+    detailIcon: 'bi-geo-alt',
+    detail: 'Rowlett Park • Tampa, Florida',
+    description: 'Calling all Jollof chefs to bring their best.',
+    image: '/images/Jollof%20Competition.jpeg',
+    alt: 'Ghana Day in Tampa Bay Jollof Competition',
+    action: 'VIEW COMPETITION',
+    href: '/images/Jollof%20Competition.jpeg',
+    actionClass: 'upcoming-event-card__action--solid',
+    externalLabel: 'View the Jollof Competition flyer',
+  },
+];
+---
+
+<section id="upcoming-events" class="upcoming-events" aria-labelledby="upcoming-events-heading">
+  <div class="upcoming-events__inner">
+    <header class="upcoming-events__header">
+      <p class="upcoming-events__eyebrow"><span></span>UPCOMING EVENTS<span></span></p>
+      <h2 id="upcoming-events-heading" class="upcoming-events__heading">What’s Happening Next</h2>
+      <p class="upcoming-events__intro">
+        Join our upcoming conversations and cultural experiences leading up to Ghana Day in Tampa Bay.
+      </p>
+    </header>
+
+    <div class="upcoming-events__grid">
+      {
+        events.map((event) => (
+          <article class="upcoming-event-card">
+            <div class="upcoming-event-card__media">
+              <img
+                class="upcoming-event-card__image"
+                src={event.image}
+                alt={event.alt}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="upcoming-event-card__content">
+              <p class:list={['upcoming-event-card__type', event.typeClass]}>{event.type}</p>
+              <h3 class="upcoming-event-card__title">{event.title}</h3>
+              <div class="upcoming-event-card__details">
+                <p><i class="bi bi-calendar-event" aria-hidden="true"></i><span>{event.date}</span></p>
+                <p><i class={`bi ${event.detailIcon}`} aria-hidden="true"></i><span>{event.detail}</span></p>
+              </div>
+              <p class="upcoming-event-card__description">{event.description}</p>
+              <a
+                class:list={['upcoming-event-card__action', event.actionClass]}
+                href={event.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={event.externalLabel}
+              >
+                {event.action}
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <EventMerchandiseBanner />
+  </div>
+</section>
+
+<style>
+  .upcoming-events {
+    --upcoming-burgundy: #7f2634;
+    --upcoming-gold: #b58a2a;
+    --upcoming-ivory: var(--color-ivory, #f7f3ee);
+    --upcoming-charcoal: var(--color-charcoal, #252525);
+    --upcoming-border: #e5ded5;
+    padding: clamp(5rem, 8vw, 8rem) 0;
+    background: var(--upcoming-ivory);
+    color: var(--upcoming-charcoal);
+  }
+
+  .upcoming-events__inner {
+    width: calc(100% - 64px);
+    max-width: 1720px;
+    margin-inline: auto;
+  }
+
+  .upcoming-events__header {
+    max-width: 760px;
+    margin: 0 auto clamp(2.5rem, 5vw, 4.5rem);
+    text-align: center;
+  }
+
+  .upcoming-events__eyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 0 0 1.25rem;
+    color: var(--upcoming-gold);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+  }
+
+  .upcoming-events__eyebrow span {
+    width: clamp(28px, 5vw, 76px);
+    height: 1px;
+    background: var(--upcoming-gold);
+  }
+
+  .upcoming-events__heading {
+    margin: 0;
+    color: var(--upcoming-charcoal);
+    font-size: clamp(2rem, 3.5vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.08;
+  }
+
+  .upcoming-events__intro {
+    max-width: 620px;
+    margin: 1.25rem auto 0;
+    color: #62605c;
+    font-size: clamp(1rem, 1.3vw, 1.125rem);
+    line-height: 1.7;
+  }
+
+  .upcoming-events__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(24px, 2.5vw, 40px);
+    align-items: stretch;
+  }
+
+  .upcoming-event-card {
+    display: grid;
+    grid-template-columns: 42% 58%;
+    min-width: 0;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid var(--upcoming-border);
+    border-radius: 3px;
+    background: var(--color-white, #fff);
+    box-shadow: 0 8px 24px rgba(37, 37, 37, 0.06);
+  }
+
+  .upcoming-event-card__media {
+    min-width: 0;
+    overflow: hidden;
+    background: #f3efe8;
+  }
+
+  .upcoming-event-card__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .upcoming-event-card__content {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: clamp(1.5rem, 2.4vw, 2.5rem);
+  }
+
+  .upcoming-event-card__type {
+    margin: 0 0 1rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+  }
+
+  .upcoming-event-card__type--burgundy {
+    color: var(--upcoming-burgundy);
+  }
+
+  .upcoming-event-card__type--gold {
+    color: var(--upcoming-gold);
+  }
+
+  .upcoming-event-card__title {
+    margin: 0;
+    color: var(--upcoming-charcoal);
+    font-size: clamp(1.25rem, 1.8vw, 1.75rem);
+    line-height: 1.2;
+  }
+
+  .upcoming-event-card__details {
+    display: grid;
+    gap: 0.65rem;
+    margin-top: 1.5rem;
+  }
+
+  .upcoming-event-card__details p {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    margin: 0;
+    color: #4e4b47;
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+
+  .upcoming-event-card__details i {
+    flex: 0 0 1.1rem;
+    margin-top: 0.1rem;
+    color: var(--upcoming-burgundy);
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .upcoming-event-card__description {
+    margin: 1.5rem 0 2rem;
+    color: #62605c;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .upcoming-event-card__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    margin-top: auto;
+    padding: 0.7rem 1.15rem;
+    border: 1px solid var(--upcoming-burgundy);
+    border-radius: 2px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .upcoming-event-card__action--outline {
+    color: var(--upcoming-burgundy);
+    background: transparent;
+  }
+
+  .upcoming-event-card__action--solid {
+    color: var(--color-white, #fff);
+    background: var(--upcoming-burgundy);
+  }
+
+  .upcoming-event-card__action:hover,
+  .upcoming-event-card__action:focus-visible {
+    color: var(--color-white, #fff);
+    background: var(--upcoming-burgundy);
+  }
+
+  @media (max-width: 1023.98px) {
+    .upcoming-events__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .upcoming-event-card {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+
+    .upcoming-event-card__media {
+      aspect-ratio: auto;
+    }
+
+    .upcoming-event-card__image {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    .upcoming-events {
+      padding: 4rem 0;
+    }
+
+    .upcoming-events__inner {
+      width: calc(100% - 40px);
+    }
+
+    .upcoming-events__eyebrow {
+      gap: 0.65rem;
+      font-size: 0.68rem;
+    }
+
+    .upcoming-event-card__content {
+      padding: 1.5rem;
+    }
+
+    .upcoming-event-card__action {
+      width: 100%;
+    }
+  }
+</style>

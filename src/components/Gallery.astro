@@ -42,6 +42,13 @@ const galleryItems = [
     caption: 'Ghanaian traditional smocks worn with pride.',
     position: 'center 35%',
   },
+  {
+    src: '/images/Man.jpeg',
+    category: 'Community Voices',
+    alt: 'Ghanaian man speaking into a microphone while wearing traditional attire',
+    caption: 'Community voices sharing Ghanaian culture.',
+    position: 'center 15%',
+  },
 ];
 ---
 
@@ -56,7 +63,7 @@ const galleryItems = [
     </header>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 gallery-experience__grid">
-      {galleryItems.slice(0, 6).map((item, index) => (
+      {galleryItems.slice(0, 7).map((item, index) => (
         <div class="col">
           <button
             type="button"
@@ -83,7 +90,7 @@ const galleryItems = [
       ))}
     </div>
 
-    {galleryItems.length > 6 && (
+    {galleryItems.length > 7 && (
       <div class="gallery-experience__more text-center">
         <button type="button" class="btn gallery-experience__more-button" data-gallery-more>VIEW MORE PHOTOS</button>
       </div>
@@ -106,7 +113,7 @@ const galleryItems = [
           <button type="button" class="gallery-lightbox__control gallery-lightbox__control--next" data-gallery-next aria-label="Next photograph"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
         </div>
         <div class="modal-footer gallery-lightbox__footer">
-          <span data-gallery-counter>1 of 6</span>
+          <span data-gallery-counter>1 of 7</span>
         </div>
       </div>
     </div>
@@ -124,6 +131,7 @@ const galleryItems = [
       { src: '/images/Photo4.jpeg', alt: 'A visitor standing in front of the Black Star monument in Accra, Ghana', caption: "Connecting with Ghana's national heritage and landmarks." },
       { src: '/images/Photo5.jpeg', alt: 'A woman wearing a traditional black-and-white Ghanaian smock at a cultural event', caption: 'Traditional Ghanaian smock and cultural craftsmanship.' },
       { src: '/images/photo6.jpeg', alt: 'Three men wearing Ghanaian traditional smocks outdoors', caption: 'Ghanaian traditional smocks worn with pride.' },
+      { src: '/images/Man.jpeg', alt: 'Ghanaian man speaking into a microphone while wearing traditional attire', caption: 'Community voices sharing Ghanaian culture.' },
     ];
     const modal = gallery.querySelector<HTMLElement>('#galleryLightbox');
     const modalImage = gallery.querySelector<HTMLImageElement>('[data-gallery-image]');
