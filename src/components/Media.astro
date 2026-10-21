@@ -24,6 +24,39 @@ const mediaVideos = [
     poster: '/images/Executive message.jpeg',
     featured: false,
   },
+  {
+    id: 'video-1',
+    title: 'Video 1',
+    description: 'Ghana Day In Tampa Bay promotional image.',
+    src: '/videos/Video1.jpeg',
+    type: 'image',
+    showTitle: false,
+    featured: false,
+  },
+  {
+    id: 'video-2',
+    title: 'Video 2',
+    description: 'Ghana Day In Tampa Bay video.',
+    src: '/videos/Video2.mp4',
+    showTitle: false,
+    featured: false,
+  },
+  {
+    id: 'video-3',
+    title: 'Video 3',
+    description: 'Ghana Day In Tampa Bay video.',
+    src: '/videos/Video3.mp4',
+    showTitle: false,
+    featured: false,
+  },
+  {
+    id: 'video-4',
+    title: 'Video 4',
+    description: 'Ghana Day In Tampa Bay video.',
+    src: '/videos/Video4.mp4',
+    showTitle: false,
+    featured: false,
+  },
 ];
 
 ---
@@ -38,12 +71,14 @@ const mediaVideos = [
       </p>
     </header>
 
-    <div class="row g-4 media-video-grid align-items-stretch stagger-group">
-      <div class="col-12 col-lg-8 d-flex">
-        <article class="media-video-card media-video-card--featured">
+    <div class="media-featured-layout stagger-group">
+      <article class="media-video-card media-featured-card">
+        <div class="media-video-card__player">
           {
             mediaVideos.slice(0, 1).map((video) => (
-              <div class="media-video-card__player">
+              video.type === 'image' ? (
+                <img src={video.src} alt={video.title} class="media-video" loading="lazy" decoding="async" />
+              ) : (
                 <video
                   controls
                   playsinline
@@ -55,21 +90,24 @@ const mediaVideos = [
                   <source src={video.src} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
-              </div>
-              <div class="media-video-card__body">
-                <h3 class="media-video-card__title">{video.title}</h3>
-                <p class="media-video-card__description">{video.description}</p>
-              </div>
+              )
             ))
           }
-        </article>
-      </div>
-      <div class="col-12 col-lg-4 d-flex">
-        <div class="media-video-card__supporting-list">
-          {
-            mediaVideos.slice(1).map((video) => (
-              <article class="media-video-card">
-                <div class="media-video-card__player">
+        </div>
+        <div class="media-video-card__body">
+          <h3 class="media-video-card__title">{mediaVideos[0].title}</h3>
+          <p class="media-video-card__description">{mediaVideos[0].description}</p>
+        </div>
+      </article>
+
+      <div class="media-supporting-grid">
+        {
+          mediaVideos.slice(1, 3).map((video) => (
+            <article class="media-video-card media-supporting-card">
+              <div class="media-video-card__player">
+                {video.type === 'image' ? (
+                  <img src={video.src} alt={video.title} class="media-video" loading="lazy" decoding="async" />
+                ) : (
                   <video
                     controls
                     playsinline
@@ -81,16 +119,51 @@ const mediaVideos = [
                     <source src={video.src} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
-                </div>
-                <div class="media-video-card__body">
-                  <h3 class="media-video-card__title">{video.title}</h3>
-                  <p class="media-video-card__description">{video.description}</p>
-                </div>
-              </article>
-            ))
-          }
-        </div>
+                )}
+              </div>
+              <div class="media-video-card__body">
+                <h3 class="media-video-card__title">{video.title}</h3>
+                <p class="media-video-card__description">{video.description}</p>
+              </div>
+            </article>
+          ))
+        }
       </div>
+    </div>
+
+    <div class="media-stories-heading">
+      <h3>More Stories</h3>
+      <span aria-hidden="true"></span>
+    </div>
+
+    <div class="media-stories-grid stagger-group">
+      {
+        mediaVideos.slice(3).map((video) => (
+          <article class="media-video-card media-story-card">
+            <div class="media-video-card__player">
+              {video.type === 'image' ? (
+                <img src={video.src} alt={video.title} class="media-video" loading="lazy" decoding="async" />
+              ) : (
+                <video
+                  controls
+                  playsinline
+                  preload="metadata"
+                  poster={video.poster}
+                  class="media-video"
+                  aria-label={video.title}
+                >
+                  <source src={video.src} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              )}
+            </div>
+            <div class="media-video-card__body">
+              {video.showTitle !== false && <h3 class="media-video-card__title">{video.title}</h3>}
+              <p class="media-video-card__description">{video.description}</p>
+            </div>
+          </article>
+        ))
+      }
     </div>
 
   </div>
@@ -110,3 +183,251 @@ const mediaVideos = [
     });
   });
 </script>
+
+<style>
+  .media-section {
+    --media-green: #006b3f;
+    --media-dark-green: #004f2e;
+    --media-gold: #fcd116;
+    --media-ivory: #fbfaf6;
+    --media-text: #343a40;
+    --media-muted: #687078;
+    position: relative;
+    overflow: hidden;
+    background: var(--media-ivory);
+  }
+
+  .media-section::before,
+  .media-section::after {
+    position: absolute;
+    width: 72px;
+    height: 210px;
+    border: 1px solid rgba(0, 107, 63, 0.04);
+    content: '';
+    pointer-events: none;
+  }
+
+  .media-section::before {
+    top: 8rem;
+    left: 0;
+    background: repeating-linear-gradient(0deg, transparent 0 22px, rgba(252, 209, 22, 0.04) 22px 23px), repeating-linear-gradient(90deg, transparent 0 22px, rgba(0, 107, 63, 0.04) 22px 23px);
+  }
+
+  .media-section::after {
+    right: 0;
+    bottom: 6rem;
+    background: repeating-linear-gradient(0deg, transparent 0 22px, rgba(0, 107, 63, 0.04) 22px 23px), repeating-linear-gradient(90deg, transparent 0 22px, rgba(252, 209, 22, 0.04) 22px 23px);
+  }
+
+  .media-video-grid,
+  .media-featured-layout,
+  .media-stories-grid,
+  .media-stories-heading {
+    position: relative;
+    z-index: 1;
+  }
+
+  .media-featured-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .media-video-card {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid rgba(37, 37, 37, 0.08);
+    border-radius: 11px;
+    background: var(--color-white);
+    box-shadow: 0 8px 24px rgba(37, 37, 37, 0.06);
+  }
+
+  .media-featured-card {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    align-self: start;
+  }
+
+  .media-supporting-grid {
+    display: grid;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    min-width: 0;
+  }
+
+  .media-supporting-card,
+  .media-story-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .media-video-card__player {
+    flex: 0 0 auto;
+    aspect-ratio: 16 / 9;
+    background: #1b1b1b;
+  }
+
+  .media-video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+    background: #1b1b1b;
+    object-fit: contain;
+  }
+
+  .media-video-card__body {
+    flex: none;
+    padding: 0.875rem 1rem;
+    background: var(--color-white);
+  }
+
+  .media-story-card .media-video-card__body {
+    flex: 1;
+  }
+
+  .media-video-card__title {
+    margin: 0 0 0.45rem;
+    color: var(--media-dark-green);
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+
+  .media-video-card__description {
+    margin: 0;
+    color: var(--media-muted);
+    font-size: 0.825rem;
+    line-height: 1.45;
+  }
+
+  .media-video-card__title::after {
+    display: block;
+    width: 2rem;
+    height: 2px;
+    margin-top: 0.375rem;
+    background: var(--media-gold);
+    content: '';
+  }
+
+  .media-featured-card .media-video-card__title {
+    font-size: 1.05rem;
+  }
+
+  .media-supporting-card .media-video-card__title {
+    font-size: 0.975rem;
+  }
+
+  .media-story-card .media-video-card__title {
+    font-size: 0.95rem;
+  }
+
+  .media-stories-heading {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: clamp(2.25rem, 4vw, 3rem) 0 1.125rem;
+  }
+
+  .media-stories-heading h3 {
+    flex: 0 0 auto;
+    margin: 0;
+    color: var(--media-green);
+    font-family: Georgia, Cambria, 'Times New Roman', serif;
+    font-size: clamp(1.65rem, 2.5vw, 2.25rem);
+  }
+
+  .media-stories-heading span {
+    width: 100%;
+    max-width: none;
+    height: 2px;
+    background: var(--media-gold);
+    opacity: 0.8;
+  }
+
+  .media-stories-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .media-section .supporting-section__header {
+    margin-top: 0.5rem;
+    margin-bottom: clamp(2rem, 4vw, 2.5rem);
+  }
+
+  .media-section .section-eyebrow {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 0.85rem;
+    color: var(--media-dark-green);
+  }
+
+  .media-section .section-eyebrow::after {
+    width: 2.5rem;
+    height: 2px;
+    background: var(--media-gold);
+    content: '';
+  }
+
+  @media (hover: hover) {
+    .media-video-card {
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .media-video-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 28px rgba(37, 37, 37, 0.1);
+    }
+  }
+
+  @media (max-width: 1199.98px) {
+    .media-featured-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .media-supporting-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: none;
+    }
+
+    .media-stories-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    .media-featured-layout,
+    .media-supporting-grid,
+    .media-stories-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .media-supporting-grid {
+      grid-template-rows: none;
+    }
+
+    .media-section .header-container {
+      width: calc(100% - 2rem);
+    }
+
+    .media-video-card__body {
+      padding: 0.875rem 1rem;
+    }
+
+    .media-section::before,
+    .media-section::after {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .media-video-card {
+      transition: none;
+    }
+  }
+</style>
