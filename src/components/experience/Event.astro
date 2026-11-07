@@ -1,50 +1,22 @@
 ---
 const programItems = [
-  {
-    number: '01',
-    time: 'TBA',
-    title: 'Opening Ceremony',
-    description:
-      'A welcoming celebration with community leaders, cultural introductions and the opening procession.',
-  },
-  {
-    number: '02',
-    time: 'TBA',
-    title: 'Traditional Drumming & Dance',
-    description:
-      'Powerful rhythms and movement performed by Ghanaian cultural groups.',
-  },
-  {
-    number: '03',
-    time: 'TBA',
-    title: 'Live Artist Performances',
-    description:
-      'Enjoy live performances from Ghanaian and African artists celebrating music, culture and community.',
-  },
-  {
-    number: '04',
-    time: 'TBA',
-    title: 'Fashion Showcase',
-    description: 'Kente, smocks, kaba and slit, and contemporary Ghanaian designs.',
-  },
-  {
-    number: '05',
-    time: 'TBA',
-    title: 'Ghanaian Food Experience',
-    description: 'Authentic dishes and flavors presented by local cooks and food vendors.',
-  },
-  {
-    number: '06',
-    time: 'TBA',
-    title: 'Family & Kids Activities',
-    description: 'Interactive cultural activities, games and learning experiences for all ages.',
-  },
-  {
-    number: '07',
-    time: 'TBA',
-    title: 'Closing Celebration',
-    description: 'Music, acknowledgements and a joyful community finale.',
-  },
+  { number: '01', title: 'Opening Prayer' },
+  { number: '02', title: 'National Anthem — USA and Ghana' },
+  { number: '03', title: 'Opening Remarks by the President' },
+  { number: '04', title: 'Purpose of the Gathering — MC' },
+  { number: '05', title: 'Musical Interlude' },
+  { number: '06', title: 'Introduction of Traditional Groups (as they come)' },
+  { number: '07', title: 'Cultural Performance — USF-ASA Dance Group' },
+  { number: '08', title: 'Cultural Performance — Traditional Groups' },
+  { number: '09', title: 'Cultural Performance — Fethiou Thiossane Cultural Arts' },
+  { number: '10', title: 'Musical Interlude' },
+  { number: '11', title: 'Cultural Performance — Traditional Groups' },
+  { number: '12', title: 'Goodwill Messages' },
+  { number: '13', title: 'Jollof War' },
+  { number: '14', title: 'Cultural Performance — Fethiou Thiossane Cultural Arts' },
+  { number: '15', title: 'Cultural Performance — Traditional Groups' },
+  { number: '16', title: 'Musical Interlude' },
+  { number: '17', title: 'Closing Remarks' },
 ];
 ---
 
@@ -90,7 +62,10 @@ const programItems = [
       <p class="section-eyebrow reveal reveal-up">FESTIVAL PROGRAM</p>
       <h2 id="festival-program-heading" class="section-heading reveal reveal-up">Experience the Day</h2>
       <p class="festival-program-intro reveal reveal-up">
-        A thoughtfully planned celebration of Ghanaian culture from opening to closing.
+        Saturday, November 7, 2026 <span aria-hidden="true">|</span> 10:00 AM–5:30 PM
+      </p>
+      <p class="festival-program-location reveal reveal-up">
+        Rowlett Park <span aria-hidden="true">·</span> 2401 E. Yukon Street <span aria-hidden="true">·</span> Tampa, FL 33604
       </p>
     </header>
 
@@ -101,13 +76,12 @@ const programItems = [
             <span class="program-item__number" aria-hidden="true">{item.number}</span>
             <div class="program-item__content">
               <h3 class="program-item__title">{item.title}</h3>
-              <p class="program-item__description">{item.description}</p>
-              <span class="program-item__time">TIME {item.time}</span>
             </div>
           </li>
         ))
       }
     </ol>
+    <p class="festival-program-note">Program sequence may be adjusted by the organizers.</p>
   </div>
 </section>
 
